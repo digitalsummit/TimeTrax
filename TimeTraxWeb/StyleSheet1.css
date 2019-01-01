@@ -1,0 +1,382 @@
+﻿body {
+ background-color: white;
+}
+
+/*
+* TABLES
+*/
+    .tableLarge
+{
+    width:100%;
+    height:100%;
+}
+
+    .tableRowLarge
+{
+    width:100%;
+    height:100%;
+    vertical-align:central;
+}
+
+   .tableCellLarge
+{
+    width:100%;
+    height:100%;
+    vertical-align:central;
+}
+
+/*
+* BUTTONS
+*/
+   .submitButton
+{
+    text-align: center;
+    font-weight:bold;
+    font-size:36pt;
+    font-family: Arial, Arial, sans-serif;
+    padding-right: 1px;
+    width: 300px;
+    height:150px;
+    float:left;
+    background-color:orange;
+    margin-top:10px;
+    border:solid;
+    
+}
+   .homeButton
+{
+    text-align: center;
+    font-weight:bold;
+    font-size:36pt;
+    font-family: Arial, Arial, sans-serif;
+    padding-right: 1px;
+    width: 300px;
+    height:150px;
+    float:left;
+    background-color:turquoise;
+    margin-top:10px;
+    border:solid;
+    
+}
+   .optionButton
+{
+    text-align: center;
+    font-weight:bold;
+    font-size:36pt;
+    font-family: Arial, Arial, sans-serif;
+    padding-right: 1px;
+    width: 100%;
+    height:200px;
+    float:left;
+    background-color:aqua;
+    margin-top:10px;
+    border:medium;
+    border-bottom-color:black;
+   
+}
+
+/*
+* LABELS
+*/
+   .titlebar
+{
+    font-weight:bold;
+    font-size:36pt;
+    font-family: Arial, Arial, sans-serif;
+    cursor: pointer;
+	color: white;
+    text-align:center;
+	display: block;
+	padding: 10px;
+	margin: 3px;
+    background-color:blue;
+}
+
+   .labelWide
+{
+    text-align: center;
+    font-weight:bold;
+    font-size:36pt;
+    font-family: Arial, Arial, sans-serif;
+    padding-right: 1px;
+    width: 100%;
+    height:100%;
+    float:left;
+    background-color:orange;
+    margin-top:10px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    border:solid;
+}
+
+      .labelStandard
+{
+    text-align: center;
+    font-weight:bold;
+    font-size:36pt;
+    font-family: Arial, Arial, sans-serif;
+    padding-right: 1px;
+    width: 300px;
+    height:100%;
+    float:left;
+    background-color:wheat;
+    margin-top:10px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    border:solid;
+}
+
+/*
+* TEXTBOXES
+*/
+   .textBoxDate
+{
+    margin-top:10px;
+    width:300px;
+    height:120px;
+    border-color:green;
+    border-width:2px;
+    text-align:center;
+    font-size:36pt;
+    background-color:white;
+}
+      .textBoxProjectNumber
+{
+    margin-top:1px;
+    border-width:2px;
+    text-align:left;
+    font-size:10pt;
+    background-color:white;
+    float:left;
+    transform:scale(7);
+}
+   .textShortAnswer
+{
+    border-width:2px;
+    text-align: center;
+    font-weight:bold;
+    font-size:42pt;
+    font-family: Arial, Arial, sans-serif;
+    padding-right: 1px;
+    width: 100%;
+    height:50px;
+    float:left;
+    background-color:white;
+    margin-top:10px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    border:solid;
+}
+
+   .textNote
+{
+    width:80%;
+    border-color:brown;
+    border-width:2px;
+    float:left;
+    font-size:42pt;
+    font-family: Arial, Arial, sans-serif;
+    height:145px;
+    margin-top:10px;
+    
+}
+      .textNoteLeft
+{
+    width:80%;
+    border-color:brown;
+    border-width:2px;
+    float:left;
+    font-size:42pt;
+    font-family: Arial, Arial, sans-serif;
+    height:145px;
+    margin-top:10px;
+    margin-left:-170px;
+}
+
+/*
+* VIEWS
+*/
+   .UnselectedView
+{
+       background: url("Images/InitialBackground.png");
+       border:none;
+       width:98%;
+}
+
+   .SelectedView
+{
+       background: url("Images/SelectedBackground.png");
+       border:none;
+       width:98%;
+}
+
+   .Initial
+{
+  display: block;
+  padding: 4px 18px 4px 18px;
+  float: left;
+  background: url("Images/InitialImage.png") no-repeat right top;
+  color: Black;
+  font-weight: bold;
+  font-size:36pt;
+  font-family: Arial, Arial, sans-serif;
+}
+   .Initial:hover
+{
+  color: White;
+  background: url("Images/HoverButton.png") no-repeat right top;
+}
+   .Clicked
+{
+  float: left;
+  display: block;
+  background: url("Images/SelectedButton.png") no-repeat right top;
+  padding: 4px 18px 4px 18px;
+  color: Black;
+  font-weight: bold;
+  color: White;
+  font-size:36pt;
+  font-family: Arial, Arial, sans-serif;
+}
+
+   .scaled {
+  transform: scale(1); 
+  transform-origin: left;
+  background-color: cyan;
+}
+   .scaled7 {
+  transform: scale(1); 
+  transform-origin: left;
+  background-color: cyan;
+}
+/*
+* RADIO BUTTONS
+*/
+     .RadioButtonClicked
+{
+  float: left;
+  display: block;
+  background: url("Images/RadioButtonChecked.png") no-repeat right top;
+  padding: 4px 18px 4px 18px;
+  color: Black;
+  font-weight: bold;
+  color: White;
+  font-size:36pt;
+  font-family: Arial, Arial, sans-serif;
+}
+
+     .RadioButtonUnclicked
+{
+  float: left;
+  display: block;
+  background: url("Images/RadioButtonChecked.png") no-repeat right top;
+  padding: 4px 18px 4px 18px;
+  color: Black;
+  font-weight: bold;
+  color: White;
+  font-size:36pt;
+  font-family: Arial, Arial, sans-serif;
+}
+/*
+* DROPDOWNS
+*/
+   .DropDownStandard
+{
+    font-size:36pt;
+    font-family: Arial, Arial, sans-serif;
+    width: 300px;
+    height:128px;
+    padding:10px;
+    margin-top: 10px;
+    text-align:center;
+
+}
+  
+/*
+* CHECKBOXES
+*/
+   .CheckboxStandard 
+{
+    text-align:left;
+    font-weight:bold;
+    font-size:10pt;
+    font-family: Arial, Arial, sans-serif;
+    padding-right: 1px;
+    float:left;
+    border:solid;
+    border-width:thin;
+    border-bottom-style:inset;
+    background-color:#DDC659;
+    transform:scale(7);
+    margin-left:240px;
+    margin-top:70px;
+    margin-bottom:53px;
+    margin-right:1px;
+}
+
+      .CheckboxWide 
+{
+    text-align:left;
+    font-weight:bold;
+    font-size:10pt;
+    font-family: Arial, Arial, sans-serif;
+    padding-right: 1px;
+    padding-left:1px;
+    float:left;
+    border:solid;
+    border-width:thin;
+    border-bottom-style:inset;
+    background-color:#DDC659;
+    transform:scale(7);
+    margin-left:432px;
+    margin-top:30px;
+    margin-bottom:53px;
+}
+      .CheckboxChecked 
+{
+    text-align:left;
+    font-weight:bold;
+    font-size:10pt;
+    font-family: Arial, Arial, sans-serif;
+    padding-right: 1px;
+    float:left;
+    border:solid;
+    border-width:thin;
+    background-color:#DDC659;
+    transform:scale(7);
+}
+            .CheckboxOther
+{
+    text-align:left;
+    font-weight:bold;
+    font-size:10pt;
+    font-family: Arial, Arial, sans-serif;
+    padding-right: 1px;
+    float:left;
+    border:solid;
+    border-width:thin;
+    border-bottom-style:inset;
+    background-color:#DDC659;
+    transform:scale(7);
+    margin-left:205px;
+    margin-top:70px;
+    margin-bottom:53px;
+}
+
+    .CheckboxTravelTime
+{
+    text-align:left;
+    font-weight:bold;
+    font-size:10pt;
+    font-family: Arial, Arial, sans-serif;
+    padding-right: 1px;
+    float:left;
+    border:solid;
+    border-width:thin;
+    border-bottom-style:inset;
+    background-color:#DDC659;
+    margin-left:285px;
+    margin-top:70px;
+    margin-bottom:53px;
+    transform:scale(7);
+}

@@ -1,0 +1,12 @@
+If you want to see the site in its current form, you can login as me (employee)
+Or as Gordon (manager)
+
+http://time.improvegroup.net/timetrax/Login
+
+Logins:
+TobeyPierce@improvegroup.net
+GordonKlein@improvegroup.net
+Since it’s just in testing mode, I gave us both the same password:
+improveIT2!
+That’s a capitol i before the T. 
+The manager login has more menu options. My login has more data.
