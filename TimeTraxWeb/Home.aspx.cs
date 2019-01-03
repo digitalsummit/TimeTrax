@@ -17,7 +17,8 @@ namespace TimeTrax
             if (!IsPostBack)
             {
                 GetEmployeeNameAndUserLevel();
-                if(Session["UserLevel"].ToString() == "Standard User")
+
+                if (Session["UserLevel"] == null || Session["UserLevel"].ToString() == "Standard User")
                 {
                     btnReports.Visible = false;
                     btnApproval.Visible = false;

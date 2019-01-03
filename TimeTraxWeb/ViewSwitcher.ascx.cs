@@ -20,8 +20,10 @@ namespace TimeTrax
         protected void Page_Load(object sender, EventArgs e)
         {
             // Determine current view
-            var isMobile = WebFormsFriendlyUrlResolver.IsMobileView(new HttpContextWrapper(Context));
-            CurrentView = isMobile ? "Mobile" : "Desktop";
+             var isMobile = WebFormsFriendlyUrlResolver.IsMobileView(new HttpContextWrapper(Context));
+            //CurrentView = isMobile ? "Mobile" : "Desktop";
+
+            CurrentView = "Desktop";
 
             // Determine alternate view
             AlternateView = isMobile ? "Desktop" : "Mobile";

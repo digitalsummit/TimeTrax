@@ -11,7 +11,9 @@ namespace TimeTrax
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblWelcome.Text = Session["EmployeeEmail"].ToString();
+            if (Session["EmployeeEmail"] != null)
+                lblWelcome.Text = Session["EmployeeEmail"].ToString();
+
             GetEmployeeName();
             GetTotalHours();
         }
@@ -69,7 +71,8 @@ namespace TimeTrax
                 conn.Close();
 
             }
-            lblWelcome.Text = ds.Tables[0].Rows[0]["EmployeeName"].ToString();
+            if (ds.Tables[0].Rows.Count > 0 && ds.Tables[0].Rows[0]["EmployeeName"] != null)
+                lblWelcome.Text = ds.Tables[0].Rows[0]["EmployeeName"].ToString();
         }
 
         protected void Button2_Click(object sender, EventArgs e)
