@@ -24,7 +24,7 @@ namespace TimeTrax
                 Tab1.CssClass = "Clicked";
                 Tab2.CssClass = "Initial";
                 MainView.ActiveViewIndex = 0;
-                cbWageScale.Visible = false;
+                //cbWageScale.Visible = false;
             }
         }
 

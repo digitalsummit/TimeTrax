@@ -12,7 +12,7 @@
     <div class="form-group">
         <asp:Label ID="Label2" CssClass="control-label col-sm-2" runat="server" Text="Approved or Not Approved time or All:"></asp:Label>
         <div class="col-sm-10">
-            <asp:DropDownList ID="DropDownList2" runat="server"></asp:DropDownList>
+            <asp:DropDownList ID="DropDownList2" CssClass="form-control" runat="server"></asp:DropDownList>
         </div>
     </div>
 
