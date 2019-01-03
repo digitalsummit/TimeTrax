@@ -13,10 +13,10 @@
     </asp:PlaceHolder>
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
+    <link rel="stylesheet" href="~/Content/bootstrap-datepicker.css" type="text/css" />
 </head>
 <body>
-    <form runat="server">
+    <form class="form-horizontal" runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
@@ -75,6 +75,7 @@
             </div>
         </div>
         <div class="container body-content">
+            <p /><p />
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
@@ -83,5 +84,7 @@
             </footer>
         </div>
     </form>
+
+    <script src='<%= ResolveUrl("~/Scripts/bootstrap-datepicker.js") %>'></script>
 </body>
 </html>

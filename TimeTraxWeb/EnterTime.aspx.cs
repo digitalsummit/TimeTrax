@@ -15,28 +15,28 @@ namespace TimeTrax
             if (!Page.IsPostBack)
             {
                 ddlHoursAddTimes();
-                Calendar1.SelectedDate = Calendar1.TodaysDate;
+                //Calendar1.SelectedDate = Calendar1.TodaysDate;
                 //lblWelcome.Text = "Submit time for: " + Session["EmployeeName"].ToString();
                 //lblWelcome.Text = HttpContext.Current.User.Identity.Name;
                 //txtDateWorked.Text = Calendar1.SelectedDate.ToShortDateString();
-                txtDateWorked.Text = DateTime.Now.ToShortDateString();
-                divCalendar.Visible = false;
+                //txtDateWorked.Text = DateTime.Now.ToShortDateString();
+                //divCalendar.Visible = false;
                 Tab1.CssClass = "Clicked";
                 Tab2.CssClass = "Initial";
                 MainView.ActiveViewIndex = 0;
-                cbWageScale.Visible = false;
+                //cbWageScale.Visible = false;
             }
         }
 
         protected void Calendar1_PreRender(object sender, EventArgs e)
         {
             // Calendar1.SelectedDate = Calendar1.TodaysDate;
-            txtDateWorked.Text = Calendar1.SelectedDate.ToShortDateString();
+            //txtDateWorked.Text = Calendar1.SelectedDate.ToShortDateString();
         }
         protected void Calendar1_SelectionChanged(object sender, EventArgs e)
         {
-            txtDateWorked.Text = Calendar1.SelectedDate.ToShortDateString();
-            Calendar1.Visible = false;
+            //txtDateWorked.Text = Calendar1.SelectedDate.ToShortDateString();
+            //Calendar1.Visible = false;
         }
       
         protected string GetProjectName(string ProjectId)
@@ -118,7 +118,7 @@ namespace TimeTrax
             {
                 //lblSubmitView1.Text = "Error. Review and retry";
                 lblSubmitView2.Text = "Error. Review and retry";
-                divCalendar.Visible = false;
+                //divCalendar.Visible = false;
             }
             else
             {
@@ -126,7 +126,7 @@ namespace TimeTrax
                 lblSubmitView2.Text = "Saved. Ready for more.";
                 SetCheckBoxesToFalse();
                 cbProjectNumber.Checked = true;
-                divCalendar.Visible = false;
+                //divCalendar.Visible = false;
                 //this.View1.Focus();
                 //View ViewSetter = FindControl("View1") as View;
                 MainView.SetActiveView(View1);
@@ -171,7 +171,7 @@ namespace TimeTrax
                     cmd.CommandText = sqlCmdText;
                     cmd.Parameters.AddWithValue("@ProjectNumber", txtProjectNumber.Text);
                     cmd.Parameters.AddWithValue("@ProjectName", projectName);
-                    cmd.Parameters.AddWithValue("@DateWorked", txtDateWorked.Text);
+                    //cmd.Parameters.AddWithValue("@DateWorked", txtDateWorked.Value);
                     cmd.Parameters.AddWithValue("@Employee", employeeName);
                     cmd.Parameters.AddWithValue("@Hours", ddlHours.SelectedValue.ToString());
                     cmd.Parameters.AddWithValue("@WageScale", wageScale);
@@ -221,8 +221,8 @@ namespace TimeTrax
 
         protected void ImageButton1_Click(object sender, System.Web.UI.ImageClickEventArgs e)
         {
-            divCalendar.Visible = true;
-            Calendar1.Visible = true;
+            //divCalendar.Visible = true;
+            //Calendar1.Visible = true;
         }
 
         protected void Tab1_Click(object sender, EventArgs e)
