@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Web;
@@ -46,6 +47,12 @@ namespace TimeTrax
             }
 
             Page.PreLoad += master_Page_PreLoad;
+
+        }
+
+        public string AppName
+        {
+            get {  return ConfigurationManager.AppSettings["AppName"]; }
         }
 
         protected void master_Page_PreLoad(object sender, EventArgs e)

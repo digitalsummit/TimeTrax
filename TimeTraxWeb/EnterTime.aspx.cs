@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
@@ -15,7 +16,8 @@ namespace TimeTrax
             {
                 ddlHoursAddTimes();
                 Calendar1.SelectedDate = Calendar1.TodaysDate;
-                lblWelcome.Text = "Submit time for: " + Session["EmployeeName"].ToString();
+                //lblWelcome.Text = "Submit time for: " + Session["EmployeeName"].ToString();
+                lblWelcome.Text = HttpContext.Current.User.Identity.Name;
                 //txtDateWorked.Text = Calendar1.SelectedDate.ToShortDateString();
                 txtDateWorked.Text = DateTime.Now.ToShortDateString();
                 divCalendar.Visible = false;
