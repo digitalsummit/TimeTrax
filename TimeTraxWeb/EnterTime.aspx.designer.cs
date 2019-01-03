@@ -31,42 +31,6 @@ namespace TimeTrax {
         protected global::System.Web.UI.WebControls.Label lblWelcome;
         
         /// <summary>
-        /// divCalendar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCalendar;
-        
-        /// <summary>
-        /// Calendar1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar Calendar1;
-        
-        /// <summary>
-        /// tblDateTime control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tblDateTime;
-        
-        /// <summary>
-        /// lblDateWorked control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDateWorked;
-        
-        /// <summary>
         /// txtDateWorked control.
         /// </summary>
         /// <remarks>
@@ -76,13 +40,13 @@ namespace TimeTrax {
         protected global::System.Web.UI.WebControls.TextBox txtDateWorked;
         
         /// <summary>
-        /// ImageButton1 control.
+        /// tblDateTime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageButton1;
+        protected global::System.Web.UI.WebControls.Table tblDateTime;
         
         /// <summary>
         /// Label1 control.

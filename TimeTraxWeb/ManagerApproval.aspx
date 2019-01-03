@@ -4,7 +4,7 @@
 
        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-              <asp:Button ID="btnHome" runat="server" Text="Home" OnClick="btnHome_Click" CssClass="submitButton" />
+<%--              <asp:Button ID="btnHome" runat="server" Text="Home" OnClick="btnHome_Click" CssClass="submitButton" />--%>
             <asp:Label ID="Label1" runat="server" Text="Approve Time for:"></asp:Label><asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
         <asp:GridView ID="GridView1" runat="server" AllowPaging="False" AllowSorting="True" AutoGenerateColumns="False" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" DataKeyNames="ID" OnRowDataBound="GridView1_RowDataBound" ForeColor="Black" GridLines="None" AutoGenerateEditButton="false" OnRowCommand="GridView1_RowCommand" OnSelectedIndexChanged="GridView1_SelectedIndexChanged"  >
             <AlternatingRowStyle BackColor="PaleGoldenrod" />
