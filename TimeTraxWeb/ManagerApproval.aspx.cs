@@ -13,6 +13,7 @@ namespace TimeTrax
             if (!IsPostBack)
             { 
                 FillDropDownList1();
+
             }
         }
 
@@ -99,7 +100,12 @@ namespace TimeTrax
                 conn.Close();
 
             }
-            GridView1.DataSource = ds.Tables[0];
+            DataTable timesheet = ds.Tables[0];
+
+            //GridView1.DataSource = ds.Tables[0];
+            Session["timesheet"] = timesheet;
+            //GridView1.DataSource = timesheet;
+            GridView1.DataSource = Session["timesheet"];
             GridView1.DataBind();
 
         }
@@ -111,6 +117,8 @@ namespace TimeTrax
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
             GridView1_GetData();
+            btnApproveAll.Text =  "Approve All time for: " + DropDownList1.SelectedValue.ToString();
+            btnApproveAll.Visible = true;
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -124,6 +132,73 @@ namespace TimeTrax
         protected void btnHome_Click(object sender, EventArgs e)
         {
             Response.Redirect("Home.aspx", true);
+        }
+
+        protected void GridView1_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            //Retrieve the table from the session object.
+            DataTable dt = Session["timesheet"] as DataTable;
+
+            if (dt != null)
+            {
+
+                //Sort the data.
+                dt.DefaultView.Sort = e.SortExpression + " " + GetSortDirection(e.SortExpression);
+                GridView1.DataSource = Session["timesheet"]; 
+                GridView1.DataBind();
+            }
+        }
+        private string GetSortDirection(string column)
+        {
+
+            // By default, set the sort direction to ascending.
+            string sortDirection = "ASC";
+
+            // Retrieve the last column that was sorted.
+            string sortExpression = ViewState["SortExpression"] as string;
+
+            if (sortExpression != null)
+            {
+                // Check if the same column is being sorted.
+                // Otherwise, the default value can be returned.
+                if (sortExpression == column)
+                {
+                    string lastDirection = ViewState["SortDirection"] as string;
+                    if ((lastDirection != null) && (lastDirection == "ASC"))
+                    {
+                        sortDirection = "DESC";
+                    }
+                }
+            }
+
+            // Save new values in ViewState.
+            ViewState["SortDirection"] = sortDirection;
+            ViewState["SortExpression"] = column;
+
+            return sortDirection;
+        }
+
+        protected void btnApproveAll_Click(object sender, EventArgs e)
+        {
+            string employeeName = DropDownList1.SelectedItem.ToString();
+            string sqlCmdText = string.Empty;
+            DataSet ds = new DataSet();
+            sqlCmdText = "UpdateApprovedAllforEmployee";
+            SqlConnection conn = new SqlConnection(Convert.ToString(ConfigurationManager.ConnectionStrings["TimeTraxConnectionString"]));
+            using (conn)
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = sqlCmdText;
+                cmd.Parameters.AddWithValue("@employeeName", employeeName);
+                cmd.Connection = conn;
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(ds);
+                conn.Close();
+
+            }
+            GridView1_GetData();
         }
     }
 }
