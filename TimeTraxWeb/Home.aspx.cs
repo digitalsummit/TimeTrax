@@ -68,7 +68,9 @@ namespace TimeTrax
                     SqlCommand cmd = new SqlCommand();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = sqlCmdText;
-                    cmd.Parameters.AddWithValue("@email", Session["EmployeeEmail"].ToString());
+
+                    cmd.Parameters.AddWithValue("@email", HttpContext.Current.User.Identity.Name);
+                    //cmd.Parameters.AddWithValue("@email", Session["EmployeeEmail"].ToString());
                     cmd.Connection = conn;
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                     adapter.Fill(ds);

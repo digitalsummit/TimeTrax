@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web;
 using System.Web.UI.WebControls;
 
 
@@ -11,8 +12,9 @@ namespace TimeTrax
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["EmployeeEmail"] != null)
-                lblWelcome.Text = Session["EmployeeEmail"].ToString();
+
+            //lblWelcome.Text = Session["EmployeeEmail"].ToString();
+            lblWelcome.Text = HttpContext.Current.User.Identity.Name;
 
             GetEmployeeName();
             GetTotalHours();

@@ -17,7 +17,7 @@ namespace TimeTrax
                 ddlHoursAddTimes();
                 Calendar1.SelectedDate = Calendar1.TodaysDate;
                 //lblWelcome.Text = "Submit time for: " + Session["EmployeeName"].ToString();
-                lblWelcome.Text = HttpContext.Current.User.Identity.Name;
+                //lblWelcome.Text = HttpContext.Current.User.Identity.Name;
                 //txtDateWorked.Text = Calendar1.SelectedDate.ToShortDateString();
                 txtDateWorked.Text = DateTime.Now.ToShortDateString();
                 divCalendar.Visible = false;

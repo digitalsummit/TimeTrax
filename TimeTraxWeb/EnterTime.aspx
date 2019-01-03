@@ -1,24 +1,26 @@
 ﻿
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EnterTime.aspx.cs" Inherits="TimeTrax.EnterTime" %>
+<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="EnterTime.aspx.cs" Inherits="TimeTrax.EnterTime" %>
 
-<!DOCTYPE html>
+
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+
+<%--<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Enter Time</title>
         <link rel="stylesheet" href="StyleSheet1.css"/>
 </head>
-<body>
-    <form id="form1" runat="server">
-          <asp:ScriptManager ID="ScriptManager1" runat="server">
-        </asp:ScriptManager>
+<body>--%>
+
+
         <div style="float:left; width:100%">
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
     <div style="width:100%" runat="server">
-        <asp:Label ID="Label4" runat="server" Text="Improve Group TimeTrax" CssClass="titlebar"></asp:Label><p></p>
-        <asp:Label ID="lblWelcome" runat="server" Text="Label" CssClass="labelWide"></asp:Label>
-        <p></p>
+        <%--<asp:Label ID="Label4" runat="server" Text="Improve Group TimeTrax" CssClass="titlebar"></asp:Label><p></p>--%>
+        <asp:Label ID="lblWelcome" Visible="false" runat="server" Text="Label" CssClass="labelWide"></asp:Label>
+<%--        <p></p>--%>
         
             <div style="float:right" id="divCalendar" runat="server" >
                 <asp:Calendar ID="Calendar1" runat="server" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Arial" Font-Size="24pt" ForeColor="#003399" Height="400px" Width="427px" OnPreRender="Calendar1_PreRender" OnSelectionChanged="Calendar1_SelectionChanged" OnDayRender="Calendar1_DayRender" >
@@ -81,6 +83,9 @@
                 </ContentTemplate>
         </asp:UpdatePanel>
 </div>
-    </form>
-</body>
-</html>
+
+
+</asp:Content>
+
+<%--</body>
+</html>--%>

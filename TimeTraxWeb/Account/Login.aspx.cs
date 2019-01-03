@@ -36,7 +36,7 @@ namespace TimeTrax.Account
                 var result = signinManager.PasswordSignIn(Email.Text, Password.Text, RememberMe.Checked, shouldLockout: false);
                 // string url = "~/EnterTime.aspx?Email=" + Email.Text;
                 Session["EmployeeEmail"] = Email.Text;
-                string url = "~/Home.aspx";
+                string url = "~/EnterTime.aspx";
                 switch (result)
                 {
                     case SignInStatus.Success:

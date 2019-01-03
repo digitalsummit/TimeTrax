@@ -1,19 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ReviewCurrentTime.aspx.cs" Inherits="TimeTrax.ReviewCurrentTime" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="ReviewCurrentTime.aspx.cs" Inherits="TimeTrax.ReviewCurrentTime" %>
 
-<!DOCTYPE html>
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Review Time</title>
-    <link rel="stylesheet" href="StyleSheet1.css"/>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>
-        <asp:Label ID="lblWelcome" runat="server" Text="Label"></asp:Label>
-    </div>
-        <asp:ScriptManager ID="ScriptManager1" runat="server">
-        </asp:ScriptManager>
+        <asp:Label Visible="false" ID="lblWelcome" runat="server" Text="Label"></asp:Label>
+
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
 
@@ -93,6 +83,5 @@
         <asp:Button ID="Button2" runat="server" Text="Home" OnClick="Button2_Click" CssClass="submitButton" />
        </ContentTemplate>                                           
             </asp:UpdatePanel>
-    </form>
-</body>
-</html>
+
+    </asp:Content>
