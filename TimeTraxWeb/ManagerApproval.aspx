@@ -1,18 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ManagerApproval.aspx.cs" Inherits="TimeTrax.ManagerApproval" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="ManagerApproval.aspx.cs" Inherits="TimeTrax.ManagerApproval" %>
 
-<!DOCTYPE html>
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Manager Approval</title>
-     <link rel="stylesheet" href="StyleSheet1.css"/>
-</head>
-<body>
-    <form id="form1" runat="server">
-   
-    <asp:ScriptManager ID="ScriptManager1" runat="server">
-        </asp:ScriptManager>
-        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+       <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
               <asp:Button ID="btnHome" runat="server" Text="Home" OnClick="btnHome_Click" CssClass="submitButton" />
             <asp:Label ID="Label1" runat="server" Text="Approve Time for:"></asp:Label><asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
@@ -50,6 +40,5 @@
 
      </ContentTemplate>                                           
             </asp:UpdatePanel>
-    </form>
-</body>
-</html>
+
+    </asp:Content>
