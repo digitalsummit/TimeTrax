@@ -77,9 +77,9 @@ namespace TimeTrax
                 lblWelcome.Text = ds.Tables[0].Rows[0]["EmployeeName"].ToString();
         }
 
-        protected void Button2_Click(object sender, EventArgs e)
+        protected void btnLastWeek_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Home.aspx", true);
+
         }
     }
     }

@@ -15,8 +15,9 @@ namespace TimeTrax
             if (!Page.IsPostBack)
             {
                 ddlHoursAddTimes();
+                GetEmployeeNameAndUserLevel();
                 //Calendar1.SelectedDate = Calendar1.TodaysDate;
-                //lblWelcome.Text = "Submit time for: " + Session["EmployeeName"].ToString();
+                lblWelcome.Text = "Submit time for: " + Session["EmployeeName"].ToString();
                 //lblWelcome.Text = HttpContext.Current.User.Identity.Name;
                 //txtDateWorked.Text = Calendar1.SelectedDate.ToShortDateString();
                 //txtDateWorked.Text = DateTime.Now.ToShortDateString();
@@ -24,6 +25,9 @@ namespace TimeTrax
                 Tab1.CssClass = "Clicked";
                 Tab2.CssClass = "Initial";
                 MainView.ActiveViewIndex = 0;
+                txtDateWorked.Text = DateTime.Today.ToShortDateString();
+                RequiredFieldValidator1.Enabled = false;
+                RequiredFieldValidator2.Enabled = true;
                 //cbWageScale.Visible = false;
             }
         }
@@ -80,7 +84,6 @@ namespace TimeTrax
                 txtProjectName.Text = GetProjectName(txtProjectNumber.Text);
             }
 
-
         }
         protected void ddlHoursAddTimes()
         {
@@ -123,13 +126,15 @@ namespace TimeTrax
             else
             {
                 //lblSubmitView1.Text = "Saved. Ready for more.";
-                lblSubmitView2.Text = "Saved. Ready for more.";
                 SetCheckBoxesToFalse();
                 cbProjectNumber.Checked = true;
                 //divCalendar.Visible = false;
                 //this.View1.Focus();
                 //View ViewSetter = FindControl("View1") as View;
+                txtPreProjectNotes.Visible = false;
+                //lblcharCountOutput.Visible = false;
                 MainView.SetActiveView(View1);
+                lblSubmitView2.Text = "Saved. Ready for more.";
 
             }
         }
@@ -139,9 +144,16 @@ namespace TimeTrax
             string returnVal = "Error";
             string employeeName = lblWelcome.Text.Replace("Submit time for: ", "");
             int projectChecked = (cbProjectNumber.Checked == true) ? 1 : 0;
+            if (txtProjectNumber.Text.Length > 4)
+            {
+                projectChecked = 1;
+                SetCheckBoxesToFalse();
+                cbProjectNumber.Checked = true;
+            }
+
             int preProject = (cbPreProject.Checked == true) ? 1 : 0;
-            int strategicInit = (cbStrategicInitiative.Checked == true) ? 1 : 0;
-            int training = (cbTraining.Checked == true) ? 1 : 0;
+            int strategicInit = (cbHoliday.Checked == true) ? 1 : 0;
+            int CorporateEvents = (cbCorporateEvents.Checked == true) ? 1 : 0;
             int Other = (cbOther.Checked == true) ? 1 : 0;
             int wageScale = (cbWageScale.Checked == true) ? 1 : 0;
             int driveTime = (cbDriveTime.Checked == true) ? 1 : 0;
@@ -171,14 +183,14 @@ namespace TimeTrax
                     cmd.CommandText = sqlCmdText;
                     cmd.Parameters.AddWithValue("@ProjectNumber", txtProjectNumber.Text);
                     cmd.Parameters.AddWithValue("@ProjectName", projectName);
-                    //cmd.Parameters.AddWithValue("@DateWorked", txtDateWorked.Value);
+                    cmd.Parameters.AddWithValue("@DateWorked", txtDateWorked.Text);
                     cmd.Parameters.AddWithValue("@Employee", employeeName);
                     cmd.Parameters.AddWithValue("@Hours", ddlHours.SelectedValue.ToString());
                     cmd.Parameters.AddWithValue("@WageScale", wageScale);
                     cmd.Parameters.AddWithValue("@DriveTime", driveTime);
                     cmd.Parameters.AddWithValue("@PreProject", preProject);
-                    cmd.Parameters.AddWithValue("@StrategicInitiative", strategicInit);
-                    cmd.Parameters.AddWithValue("@Training", training);
+                    cmd.Parameters.AddWithValue("@Holiday", strategicInit);
+                    cmd.Parameters.AddWithValue("@CorporateEvents", CorporateEvents);
                     cmd.Parameters.AddWithValue("@Other", Other);
                     cmd.Parameters.AddWithValue("@PTO", PTO);
                     cmd.Parameters.AddWithValue("@Notes", txtPreProjectNotes.Text);
@@ -207,6 +219,13 @@ namespace TimeTrax
         protected void txtProjectNumber_TextChanged(object sender, EventArgs e)
         {
             lblSubmitView2.Text = string.Empty;
+            if (txtProjectNumber.Text.Length > 4)
+            {
+                SetCheckBoxesToFalse();
+                cbProjectNumber.Checked = true;
+            }
+            RequiredFieldValidator1.Enabled = false;
+            RequiredFieldValidator2.Enabled = true;
         }
 
         protected void btnReview_Click(object sender, EventArgs e)
@@ -232,6 +251,9 @@ namespace TimeTrax
             tblView1.CssClass = "SelectedView";
             tblView2.CssClass = "UnselectedView";
             MainView.ActiveViewIndex = 0;
+            btnSubmit.ValidationGroup = "ProjectBased";
+            RequiredFieldValidator3.Enabled = false;
+            lblSubmitView2.Text = string.Empty;
         }
 
         protected void Tab2_Click(object sender, EventArgs e)
@@ -241,35 +263,45 @@ namespace TimeTrax
             tblView2.CssClass = "SelectedView";
             tblView1.CssClass = "UnselectedView";
             MainView.ActiveViewIndex = 1;
+            btnSubmit.ValidationGroup = "Overhead";
+            lblSubmitView2.Text = string.Empty;
         }
 
         protected void cbPreProject_CheckedChanged(object sender, EventArgs e)
         {
             SetCheckBoxesToFalse();
             cbPreProject.Checked = true;
+            lblShortNote.Visible = true;
+            txtPreProjectNotes.Visible = true;
+            //lblcharCountOutput.Visible = true;
             //cbPreProject.BackColor = System.Drawing.Color.LightGreen;
+            RequiredFieldValidator1.Enabled = true;
+            RequiredFieldValidator2.Enabled = false;
 
         }
 
-        protected void cbTraining_CheckedChanged(object sender, EventArgs e)
+        protected void cbCorporateEvents_CheckedChanged(object sender, EventArgs e)
         {
             SetCheckBoxesToFalse();
-            cbTraining.Checked = true;
-            //cbTraining.BackColor = System.Drawing.Color.LightGreen;
+            cbCorporateEvents.Checked = true;
+            //cbCorporateEvents.BackColor = System.Drawing.Color.LightGreen;
 
         }
 
-        protected void cbStrategicInitiative_CheckedChanged(object sender, EventArgs e)
+        protected void cbHoliday_CheckedChanged(object sender, EventArgs e)
         {
             SetCheckBoxesToFalse();
-            cbStrategicInitiative.Checked = true;
-            //cbStrategicInitiative.BackColor = System.Drawing.Color.LightGreen;
+            cbHoliday.Checked = true;
+            //cbHoliday.BackColor = System.Drawing.Color.LightGreen;
         }
 
         protected void cbOther_CheckedChanged(object sender, EventArgs e)
         {
             SetCheckBoxesToFalse();
             cbOther.Checked = true;
+            RequiredFieldValidator3.Enabled = true;
+            txtOther.Visible = true;
+            lblOtherNote.Visible = true;
             //cbOther.BackColor = System.Drawing.Color.LightGreen;
         }
 
@@ -277,15 +309,23 @@ namespace TimeTrax
         {
             cbProjectNumber.Checked = false;
             //cbProjectNumber.BackColor = System.Drawing.Color.White;
-            cbStrategicInitiative.Checked = false;
-            //cbStrategicInitiative.BackColor = System.Drawing.Color.White;
+            cbHoliday.Checked = false;
+            //cbHoliday.BackColor = System.Drawing.Color.White;
             cbPreProject.Checked = false;
             //cbPreProject.BackColor = System.Drawing.Color.White;
             cbOther.Checked = false;
             //cbOther.BackColor = System.Drawing.Color.White;
-            cbTraining.Checked = false;
-            //cbTraining.BackColor = System.Drawing.Color.White;
+            cbCorporateEvents.Checked = false;
+            //cbCorporateEvents.BackColor = System.Drawing.Color.White;
             cbPTO.Checked = false;
+            lblShortNote.Visible = false;
+            txtPreProjectNotes.Visible = false;
+            //lblcharCountOutput.Visible = false;
+            RequiredFieldValidator1.Enabled = false;
+            RequiredFieldValidator3.Enabled = false;
+            txtOther.Visible = false;
+            lblOtherNote.Visible = false;
+            lblSubmitView2.Text = string.Empty;
 
         }
 
@@ -318,12 +358,54 @@ namespace TimeTrax
         {
             SetCheckBoxesToFalse();
             cbProjectNumber.Checked = true;
+            RequiredFieldValidator1.Enabled = false;
+            RequiredFieldValidator2.Enabled = true;
+
         }
 
         protected void cbPTO_CheckedChanged(object sender, EventArgs e)
         {
             SetCheckBoxesToFalse();
             cbPTO.Checked = true;
+        }
+        protected void GetEmployeeNameAndUserLevel()
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+                string sqlCmdText = string.Empty;
+                sqlCmdText = "GetEmployeeNameAndUserLevel";
+                SqlConnection conn = new SqlConnection(Convert.ToString(ConfigurationManager.ConnectionStrings["TimeTraxConnectionString"]));
+                using (conn)
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = sqlCmdText;
+
+                    cmd.Parameters.AddWithValue("@email", HttpContext.Current.User.Identity.Name);
+                    //cmd.Parameters.AddWithValue("@email", Session["EmployeeEmail"].ToString());
+                    cmd.Connection = conn;
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    adapter.Fill(ds);
+                    conn.Close();
+
+                }
+                Session["EmployeeName"] = ds.Tables[0].Rows[0]["EmployeeName"].ToString();
+                Session["UserLevel"] = ds.Tables[0].Rows[0]["UserLevel"].ToString();
+                //lblUserName.Text = Session["EmployeeName"].ToString();
+            }
+            catch (Exception ex)
+            {
+                //lblUserName.Text = ex.ToString();
+            }
+        }
+
+        protected void txtPreProjectNotes_TextChanged(object sender, EventArgs e)
+        {
+            int charactersLeft = 0;
+            charactersLeft = 50 - txtPreProjectNotes.Text.Length;
+            //lblcharCountOutput.Text = charactersLeft.ToString() + " more characters allowed";
         }
     }
 }

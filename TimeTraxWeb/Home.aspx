@@ -11,7 +11,7 @@
     <form id="form1" runat="server">
     <div runat="server" style="width:100%">
         <asp:Table runat="server" ID="tblMenu" CssClass="tableLarge">
-            <asp:TableRow runat="server" CssClass="tableRowLarge"><asp:TableCell CssClass="tableCellLarge"><asp:Label ID="Label1" runat="server" Text="Improve Group TimeTrax" CssClass="titlebar"></asp:Label></asp:TableCell></asp:TableRow>
+            <asp:TableRow runat="server" CssClass="tableRowLarge"><asp:TableCell CssClass="tableCellLarge"><asp:Label ID="Label1" runat="server" Text="IG TimeTrax" CssClass="titlebar"></asp:Label></asp:TableCell></asp:TableRow>
             <asp:TableRow runat="server" Width="100%" Height="100%"><asp:TableCell><asp:Label ID="lblUserName" runat="server" CssClass="labelWide"></asp:Label></asp:TableCell></asp:TableRow>
             <asp:TableRow runat="server" Width="100%" Height="100%"><asp:TableCell><asp:Button ID="btnEnterTime" runat="server" Text="Submit My Time" OnClick="btnEnterTime_Click"  CssClass="optionButton"/></asp:TableCell></asp:TableRow>
             <asp:TableRow runat="server" Width="100%" Height="100%"><asp:TableCell><asp:Button ID="btnReview" runat="server" Text="REVIEW" OnClick="btnReview_Click" CssClass="optionButton"/></asp:TableCell></asp:TableRow>

@@ -12,8 +12,8 @@
 </head>
 <body>--%>
 
-
-    <div style="width: 100%" runat="server">
+    <div runat="server" style="height:50px"></div>
+    <div style="width: 100%;" runat="server">
         <%--<asp:Label ID="Label4" runat="server" Text="Improve Group TimeTrax" CssClass="titlebar"></asp:Label><p></p>--%>
         <asp:Label ID="lblWelcome" Visible="false" runat="server" Text="Label" CssClass="labelWide"></asp:Label>
         <%--        <p></p>--%>
@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="form-group">
-            <asp:Label ID="Label3" CssClass="control-label col-sm-2" runat="server" Text="Approved or Not Approved time or All:"></asp:Label>
+            <asp:Label ID="Label3" CssClass="control-label col-sm-2" runat="server" Text="Hours:"></asp:Label>
             <div class="col-sm-10">
                 <asp:DropDownList ID="ddlHours" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlHours_SelectedIndexChanged"></asp:DropDownList>
             </div>
@@ -83,10 +83,10 @@
         </div>--%>
     </div>
     <div style="float: left; width: 100%" runat="server" id="divTabButtons">
-        <asp:Button Text="Project Based" BorderStyle="None" ID="Tab1" CssClass="Initial" runat="server"
+        <asp:Button Text="Project Based" BorderStyle="None" ID="Tab1" CssClass="add-on" runat="server" ValidationGroup="None"
             OnClick="Tab1_Click" />
 
-        <asp:Button Text="Overhead" BorderStyle="None" ID="Tab2" CssClass="Initial" runat="server"
+        <asp:Button Text="Overhead" BorderStyle="None" ID="Tab2" CssClass="Initial" runat="server" ValidationGroup="None"
             OnClick="Tab2_Click" />
     </div>
     <p></p>
@@ -99,7 +99,7 @@
                             <asp:TableCell>
                                 <asp:CheckBox ID="cbProjectNumber" runat="server" Text="Project#:" Checked="true" AutoPostBack="true" OnCheckedChanged="cbProjectNumber_CheckedChanged" CssClass="CheckboxOther" />
                             </asp:TableCell><asp:TableCell>
-                                <asp:TextBox ID="txtProjectNumber" runat="server" CssClass="textNote" Font-Size="36pt" Width="300px"></asp:TextBox>
+                                <asp:TextBox ID="txtProjectNumber" runat="server" CssClass="textNote" Font-Size="36pt" Width="300px" OnTextChanged="txtProjectNumber_TextChanged" AutoPostBack="true"></asp:TextBox>
                             </asp:TableCell><asp:TableCell Width="300px"></asp:TableCell>
                         </asp:TableRow>
                         <asp:TableRow></asp:TableRow>
@@ -113,22 +113,25 @@
                     </asp:TableRow>
                     <asp:TableRow>
                         <asp:TableCell>
-                            <asp:Button ID="btnGetProjectName" runat="server" Text="Get Project Title" OnClick="btnGetProjectName_Click" CssClass="optionButton" />
+                            <asp:Button ID="btnGetProjectName" runat="server" Text="Check Project Title" OnClick="btnGetProjectName_Click" CssClass="optionButton" />
                         </asp:TableCell>
                     </asp:TableRow>
                     <asp:TableRow>
                         <asp:TableCell>
-                            <asp:TextBox ID="txtProjectName" runat="server" CssClass="textShortAnswer"></asp:TextBox>
+                            <asp:TextBox ID="txtProjectName" runat="server" CssClass="textShortAnswer" BorderStyle="None"></asp:TextBox>
                         </asp:TableCell>
                     </asp:TableRow>
                     <asp:TableRow Height="150px" CssClass="tableRowLarge">
                         <asp:TableCell Width="100%">
-                            <asp:CheckBox ID="cbPreProject" runat="server" Text="No Project Number Yet" CssClass="CheckboxWide" AutoPostBack="true" OnCheckedChanged="cbPreProject_CheckedChanged" />
+                            <asp:CheckBox ID="cbPreProject" runat="server" Text="Preproject / BD / Prospecting" CssClass="CheckboxWide" AutoPostBack="true" OnCheckedChanged="cbPreProject_CheckedChanged" />
                         </asp:TableCell>
                     </asp:TableRow>
                     <asp:TableRow>
                         <asp:TableCell>
-                            <asp:Label ID="Label2" runat="server" Text="Short Note:" CssClass="labelStandard"></asp:Label><asp:TextBox ID="txtPreProjectNotes" runat="server" TextMode="MultiLine" CssClass="textNote" Text=""></asp:TextBox>
+                            <asp:Label ID="lblShortNote" runat="server" Text="Enter up to 50 character note:" CssClass="labelStandard" Visible="false">
+                                <%--<asp:Label ID="lblcharCountOutput" runat="server" Text="Enter up to 50 characters"></asp:Label>--%>
+
+                            </asp:Label><asp:TextBox ID="txtPreProjectNotes" runat="server" TextMode="SingleLine" MaxLength="50" Width="80%" Text="" Visible="false"></asp:TextBox>
                         </asp:TableCell>
                     </asp:TableRow>
                 </asp:Table>
@@ -137,28 +140,28 @@
                 <asp:Table runat="server" ID="tblView2" CssClass="UnselectedView">
                     <asp:TableRow Height="250px">
                         <asp:TableCell Width="650px">
-                            <asp:CheckBox ID="cbTraining" runat="server" Text="Training" AutoPostBack="true" OnCheckedChanged="cbTraining_CheckedChanged" CssClass="CheckboxStandard" />
+                            <asp:CheckBox ID="cbCorporateEvents" runat="server" Text="CorporateEvents" AutoPostBack="true" OnCheckedChanged="cbCorporateEvents_CheckedChanged" CssClass="CheckboxStandard" />
                         </asp:TableCell><asp:TableCell>
-                            <asp:CheckBox ID="cbPTO" runat="server" Text="PTO/Holiday" AutoPostBack="true" OnCheckedChanged="cbPTO_CheckedChanged" CssClass="CheckboxStandard" />
+                            <asp:CheckBox ID="cbPTO" runat="server" Text="PTO" AutoPostBack="true" OnCheckedChanged="cbPTO_CheckedChanged" CssClass="CheckboxStandard" />
                         </asp:TableCell>
                     </asp:TableRow>
                     <asp:TableRow>
                         <asp:TableCell>
-                            <asp:CheckBox ID="cbStrategicInitiative" runat="server" Text="Strategic Initiative" AutoPostBack="true" OnCheckedChanged="cbStrategicInitiative_CheckedChanged" CssClass="CheckboxWide" />
+                            <asp:CheckBox ID="cbHoliday" runat="server" Text="Holiday" AutoPostBack="true" OnCheckedChanged="cbHoliday_CheckedChanged" CssClass="CheckboxWide" />
                         </asp:TableCell>
                     </asp:TableRow>
                     <asp:TableRow>
                         <asp:TableCell>
                             <asp:CheckBox ID="cbOther" runat="server" Text="Other:" AutoPostBack="true" OnCheckedChanged="cbOther_CheckedChanged" CssClass="CheckboxOther" />
                         </asp:TableCell><asp:TableCell>
-                            <asp:TextBox ID="txtOther" runat="server" CssClass="textNote" Font-Size="36pt"></asp:TextBox>
+                            <asp:Label ID="lblOtherNote" runat="server" Text="Enter up to 50 character note:" Visible="false"></asp:Label>
+                            <asp:TextBox ID="txtOther" runat="server" CssClass="textNote" Font-Size="36pt" TextMode="SingleLine" MaxLength="50" Width="80%" Visible="false"></asp:TextBox>
                         </asp:TableCell>
                     </asp:TableRow>
                     <asp:TableRow>
                         <asp:TableCell></asp:TableCell><asp:TableCell><p></p></asp:TableCell>
                     </asp:TableRow>
                 </asp:Table>
-                =
             </asp:View>
         </asp:MultiView>
     </div>
@@ -166,7 +169,12 @@
         <asp:Table runat="server" ID="tblButtons" HorizontalAlign="Left">
             <asp:TableRow>
                 <asp:TableCell>
-                    <asp:Button ID="btnSubmit" runat="server" Text="SUBMIT" OnClick="btnSubmit_Click" CssClass="submitButton" />
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="RequiredFieldValidator" Display="Dynamic" Text="Note required if no project#" ControlToValidate="txtPreProjectNotes" Enabled="false" Font-Bold="True" ForeColor="Red" ValidationGroup="ProjectBased"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="RequiredFieldValidator" Display="Dynamic" Text="Enter Project# or Select another option" ControlToValidate="txtProjectNumber"  Enabled="false" Font-Bold="True" ForeColor="Red" ValidationGroup="ProjectBased"></asp:RequiredFieldValidator>
+                    <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="Must choose hours" ControlToValidate="ddlHours" ValueToCompare="0" Operator="NotEqual" Type="Double" ForeColor="Red" Font-Bold="true" ValidationGroup="ProjectBased"></asp:CompareValidator>
+                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="RequiredFieldValidator" Display="Dynamic" Text="Note required" ControlToValidate="txtOther" Enabled="false" Font-Bold="True" ForeColor="Red" ValidationGroup="Overhead"></asp:RequiredFieldValidator>
+                    <asp:Button ID="btnSubmit" runat="server" Text="SUBMIT" OnClick="btnSubmit_Click" CssClass="submitButton" ValidationGroup="ProjectBased"/>
+                    <asp:CompareValidator ID="CompareValidator2" runat="server" ErrorMessage="Must choose hours" ControlToValidate="ddlHours" ValueToCompare="0" Operator="NotEqual" Type="Double" ForeColor="Red" Font-Bold="true" ValidationGroup="Overhead"></asp:CompareValidator>
                 </asp:TableCell><asp:TableCell>
                     <asp:Label ID="lblSubmitView2" runat="server" Text="" Font-Size="36pt"></asp:Label>
                 </asp:TableCell>

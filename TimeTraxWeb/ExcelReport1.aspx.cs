@@ -21,7 +21,7 @@ namespace TimeTrax
             {
                 FillDropDownList1();
                 FillDropDownList2();
-
+                cbByProject.Checked = true;
             }
         }
 

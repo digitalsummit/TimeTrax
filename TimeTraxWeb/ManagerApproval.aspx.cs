@@ -59,6 +59,9 @@ namespace TimeTrax
 
         protected void updateGridView1Approved(string sRowID)
         {
+            GridView1.EnableViewState = true;
+            
+            string SortDirection = GridView1.SortDirection.ToString();
             string employeeName = DropDownList1.SelectedItem.ToString();
             string sqlCmdText = string.Empty;
             DataSet ds = new DataSet();
@@ -82,10 +85,24 @@ namespace TimeTrax
 
         protected void GridView1_GetData()
         {
+
+            string sortExp = string.Empty;
+            // if (Session["LoggedIn"]) !=null)
+            if (Session["sortExp"] != null)
+            {
+                sortExp = Session["sortExp"].ToString();
+            }
+              
+            else
+            {
+                Session["sortExp"] = "ID";
+            }
+
             string employeeName = DropDownList1.SelectedItem.ToString();
             string sqlCmdText = string.Empty;
             DataSet ds = new DataSet();
-            sqlCmdText = "GetCurrentTimeSheetForApproval";
+            // sqlCmdText = "GetCurrentTimeSheetForApproval";
+            sqlCmdText = "[GetCurrentTimeSheetForApprovalShowHours]";
             SqlConnection conn = new SqlConnection(Convert.ToString(ConfigurationManager.ConnectionStrings["TimeTraxConnectionString"]));
             using (conn)
             {
@@ -100,13 +117,29 @@ namespace TimeTrax
                 conn.Close();
 
             }
-            DataTable timesheet = ds.Tables[0];
+            DataTable dt = ds.Tables[0];
 
             //GridView1.DataSource = ds.Tables[0];
-            Session["timesheet"] = timesheet;
+            
+            //
+            //DataTable dt = Session["timesheet"] as DataTable;
+            DataView dv = dt.DefaultView;
+            dv.Sort = sortExp;
+            DataTable sortedDT = dv.ToTable();
+            Session["timesheet"] = sortedDT;
+            if (dt != null)
+            {
+
+                //Sort the data.
+                // dt.DefaultView.Sort = e.SortExpression + " " + GetSortDirection(e.SortExpression);
+                // GridView1.DataSource = Session["timesheet"];
+                GridView1.DataSource = sortedDT;
+                GridView1.DataBind();
+            }
+            //
             //GridView1.DataSource = timesheet;
-            GridView1.DataSource = Session["timesheet"];
-            GridView1.DataBind();
+            //GridView1.DataSource = Session["timesheet"];
+            //GridView1.DataBind();
 
         }
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -137,46 +170,24 @@ namespace TimeTrax
         protected void GridView1_Sorting(object sender, GridViewSortEventArgs e)
         {
             //Retrieve the table from the session object.
+            Session["sortExp"] = e.SortExpression.ToString();
+            Session["SortOrder"] = GridView1.SortDirection.ToString();
+            string sortExp = Session["sortExp"].ToString();
             DataTable dt = Session["timesheet"] as DataTable;
-
+            DataView dv = dt.DefaultView;
+            dv.Sort = sortExp;
+            DataTable sortedDT = dv.ToTable();
             if (dt != null)
             {
 
                 //Sort the data.
-                dt.DefaultView.Sort = e.SortExpression + " " + GetSortDirection(e.SortExpression);
-                GridView1.DataSource = Session["timesheet"]; 
+                // dt.DefaultView.Sort = e.SortExpression + " " + GetSortDirection(e.SortExpression);
+                // GridView1.DataSource = Session["timesheet"];
+                GridView1.DataSource = sortedDT;
                 GridView1.DataBind();
             }
         }
-        private string GetSortDirection(string column)
-        {
-
-            // By default, set the sort direction to ascending.
-            string sortDirection = "ASC";
-
-            // Retrieve the last column that was sorted.
-            string sortExpression = ViewState["SortExpression"] as string;
-
-            if (sortExpression != null)
-            {
-                // Check if the same column is being sorted.
-                // Otherwise, the default value can be returned.
-                if (sortExpression == column)
-                {
-                    string lastDirection = ViewState["SortDirection"] as string;
-                    if ((lastDirection != null) && (lastDirection == "ASC"))
-                    {
-                        sortDirection = "DESC";
-                    }
-                }
-            }
-
-            // Save new values in ViewState.
-            ViewState["SortDirection"] = sortDirection;
-            ViewState["SortExpression"] = column;
-
-            return sortDirection;
-        }
+        
 
         protected void btnApproveAll_Click(object sender, EventArgs e)
         {
@@ -200,5 +211,7 @@ namespace TimeTrax
             }
             GridView1_GetData();
         }
+
+       
     }
 }

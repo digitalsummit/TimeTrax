@@ -193,13 +193,13 @@ namespace TimeTrax {
         protected global::System.Web.UI.WebControls.CheckBox cbPreProject;
         
         /// <summary>
-        /// Label2 control.
+        /// lblShortNote control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label lblShortNote;
         
         /// <summary>
         /// txtPreProjectNotes control.
@@ -229,13 +229,13 @@ namespace TimeTrax {
         protected global::System.Web.UI.WebControls.Table tblView2;
         
         /// <summary>
-        /// cbTraining control.
+        /// cbCorporateEvents control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbTraining;
+        protected global::System.Web.UI.WebControls.CheckBox cbCorporateEvents;
         
         /// <summary>
         /// cbPTO control.
@@ -247,13 +247,13 @@ namespace TimeTrax {
         protected global::System.Web.UI.WebControls.CheckBox cbPTO;
         
         /// <summary>
-        /// cbStrategicInitiative control.
+        /// cbHoliday control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbStrategicInitiative;
+        protected global::System.Web.UI.WebControls.CheckBox cbHoliday;
         
         /// <summary>
         /// cbOther control.
@@ -263,6 +263,15 @@ namespace TimeTrax {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox cbOther;
+        
+        /// <summary>
+        /// lblOtherNote control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOtherNote;
         
         /// <summary>
         /// txtOther control.
@@ -292,6 +301,42 @@ namespace TimeTrax {
         protected global::System.Web.UI.WebControls.Table tblButtons;
         
         /// <summary>
+        /// RequiredFieldValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        
+        /// <summary>
+        /// RequiredFieldValidator2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        
+        /// <summary>
+        /// CompareValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator CompareValidator1;
+        
+        /// <summary>
+        /// RequiredFieldValidator3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        
+        /// <summary>
         /// btnSubmit control.
         /// </summary>
         /// <remarks>
@@ -299,6 +344,15 @@ namespace TimeTrax {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSubmit;
+        
+        /// <summary>
+        /// CompareValidator2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator CompareValidator2;
         
         /// <summary>
         /// lblSubmitView2 control.
