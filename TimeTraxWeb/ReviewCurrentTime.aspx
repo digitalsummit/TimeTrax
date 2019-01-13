@@ -6,27 +6,63 @@
 
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
+            
+            <div runat="server" style="width:100%">
+            <asp:Label ID="lblSumHours" runat="server" Text="" BackColor="LightGoldenrodYellow" ></asp:Label>
+            <asp:Label ID="lblSumLastWeek" runat="server" Text="" BackColor="Khaki"></asp:Label>
+            <asp:Label ID="lblSumNextWeek" runat="server" Text="" BackColor="LightGoldenrodYellow"></asp:Label>
+            <asp:Label ID="lblSumThisWeek" runat="server" Text="" BackColor="Khaki"></asp:Label>
+                <p></p>
+            <asp:Label ID="lblSumCurrentMonday" runat="server" Text="" BackColor="Khaki"></asp:Label>
+            <asp:Label ID="lblSumCurrentTuesday" runat="server" Text="" BackColor="LightGoldenrodYellow"></asp:Label>
+            <asp:Label ID="lblSumCurrentWednesday" runat="server" Text="" BackColor="Khaki"></asp:Label>
+            <asp:Label ID="lblSumCurrentThursday" runat="server" Text="" BackColor="LightGoldenrodYellow" ></asp:Label>
+            <asp:Label ID="lblSumCurrentFriday" runat="server" Text="" BackColor="Khaki"></asp:Label>
+            <asp:Label ID="lblSumCurrentSaturday" runat="server" Text="" BackColor="LightGoldenrodYellow"></asp:Label>
+            <asp:Label ID="lblSumCurrentSunday" runat="server" Text="" BackColor="Khaki"></asp:Label>
+                <p></p>
+            <asp:Label ID="Label1" runat="server" Text="Decrease Hours: ⮟ Increase Hours: ⮝ " BackColor="Tan" ForeColor="#428BCA" Font-Bold="true" ></asp:Label>
+            </div>
 
-        <asp:GridView ID="GridView1" runat="server" AllowPaging="False" AllowSorting="True" AutoGenerateColumns="False" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" DataKeyNames="ID" DataSourceID="SqlDataSource1" OnRowDataBound="GridView1_RowDataBound" ForeColor="Black" GridLines="None" AutoGenerateEditButton="true">
+        <asp:GridView ID="GridView1" runat="server" AllowPaging="False" AllowSorting="True" AutoGenerateColumns="False" AutoGenerateSelectButton="false" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" DataKeyNames="ID" OnSorting="GridView1_Sorting"  >
             <AlternatingRowStyle BackColor="PaleGoldenrod" />
             <Columns>
-                <asp:BoundField DataField="ID" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="ID" />
-                <asp:BoundField DataField="ProjectNumber" HeaderText="ProjectNumber" SortExpression="ProjectNumber"   />
-                <asp:BoundField DataField="ProjectName" HeaderText="ProjectName" SortExpression="ProjectName" ItemStyle-Width="300px" />
-                <asp:BoundField DataField="DateWorked" HeaderText="DateWorked" SortExpression="DateWorked" />
-                <asp:BoundField DataField="Employee" HeaderText="Employee" SortExpression="Employee" />
+                <asp:BoundField DataField="ID" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="ID" Visible="false" />
+                <asp:TemplateField>
+                <ItemTemplate>
+                      <asp:LinkButton ID="btnDelete" runat="server" CommandArgument='<%#Eval("ID")%>' OnCommand="lnkDelete" Text="Delete">
+                      </asp:LinkButton>
+                </ItemTemplate>
+               </asp:TemplateField>
+               <asp:BoundField DataField="ProjectNumber" HeaderText="ProjectNumber" SortExpression="ProjectNumber" ReadOnly="True"   />
+               <asp:BoundField DataField="ProjectName" HeaderText="ProjectName" SortExpression="ProjectName" ItemStyle-Width="300px" ReadOnly="True"  />
+               <asp:BoundField DataField="DateWorked" HeaderText="DateWorked" SortExpression="DateWorked" ReadOnly="True"  />
+               <asp:BoundField DataField="Employee" HeaderText="Employee" SortExpression="Employee"  ReadOnly="True" Visible="false" />
+               <asp:TemplateField>
+               <ItemTemplate>
+                      <asp:LinkButton ID="btnSubtractTime" runat="server" CommandArgument='<%#Eval("ID")%>' OnCommand="lnkSubstractTime" Text="⮟">
+                      </asp:LinkButton>
+               </ItemTemplate>
+               </asp:TemplateField>
                 <asp:BoundField DataField="Hours" HeaderText="Hours" SortExpression="Hours" />
-                <asp:CheckBoxField DataField="WageScale" HeaderText="WageScale" SortExpression="WageScale" />
-                <asp:CheckBoxField DataField="DriveTime" HeaderText="DriveTime" SortExpression="DriveTime" />
-                <asp:CheckBoxField DataField="PreProject" HeaderText="PreProject" SortExpression="PreProject" />
-                <asp:CheckBoxField DataField="CorporateEvents" HeaderText="CorporateEvents" SortExpression="CorporateEvents" />
-                <asp:CheckBoxField DataField="PTO" HeaderText="PTO" SortExpression="PTO" />
-                <asp:CheckBoxField DataField="Holiday" HeaderText="Holiday" SortExpression="Holiday" />
-                <asp:CheckBoxField DataField="Other" HeaderText="Other" SortExpression="Other" />
-                <asp:BoundField DataField="Notes" HeaderText="Notes" SortExpression="Notes" />
+                <asp:TemplateField>
+                <ItemTemplate>
+                      <asp:LinkButton ID="btnAddTime" runat="server" CommandArgument='<%#Eval("ID")%>' OnCommand="lnkAddTime" Text="⮝">
+                      </asp:LinkButton>
+               </ItemTemplate>
+        </asp:TemplateField>
+                <asp:CheckBoxField DataField="DriveTime" HeaderText="DriveTime" SortExpression="DriveTime" ReadOnly="True"  />
+                <asp:CheckBoxField DataField="PreProject" HeaderText="PreProject" SortExpression="PreProject" ReadOnly="True"  />
+                <asp:CheckBoxField DataField="CorporateEvents" HeaderText="CorpEvents" SortExpression="CorporateEvents" ReadOnly="True" />
+                 <asp:CheckBoxField DataField="Training" HeaderText="Training" SortExpression="Training" ReadOnly="True"  />
+                <asp:CheckBoxField DataField="PTO" HeaderText="PTO" SortExpression="PTO"  ReadOnly="True" />
+                <asp:CheckBoxField DataField="Holiday" HeaderText="Holiday" SortExpression="Holiday" ReadOnly="True"  />
+                 <asp:CheckBoxField DataField="WageScale" HeaderText="WageScale" SortExpression="WageScale" ReadOnly="True"  />
+                <asp:CheckBoxField DataField="Other" HeaderText="Other" SortExpression="Other" ReadOnly="True"  />
+                <asp:BoundField DataField="Notes" HeaderText="Notes" SortExpression="Notes" ReadOnly="True"  />
             </Columns>
             <EmptyDataTemplate>
-                No data found
+                No data selected
             </EmptyDataTemplate>
             <FooterStyle BackColor="Tan" />
             <HeaderStyle BackColor="Tan" Font-Bold="True" />
@@ -37,53 +73,6 @@
             <SortedDescendingCellStyle BackColor="#E1DB9C" />
             <SortedDescendingHeaderStyle BackColor="#C2A47B" />
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TimeTraxConnectionString %>" DeleteCommand="DELETE FROM [TimeSheet] WHERE [ID] = @ID" InsertCommand="INSERT INTO [TimeSheet] ([ProjectNumber], [ProjectName], [DateWorked], [Employee], [Hours], [WageScale], [DriveTime]) VALUES (@ProjectNumber, @ProjectName, @DateWorked, @Employee, @Hours, @WageScale, @DriveTime)" UpdateCommand="UPDATE [TimeSheet] SET [ProjectNumber] = @ProjectNumber, [ProjectName] = @ProjectName, [DateWorked] = @DateWorked, [Employee] = @Employee, [Hours] = @Hours, [PreProject] = @PreProject,[PTO] = @PTO, [Holiday] = @Holiday,[CorporateEvents] = @CorporateEvents, [WageScale] = @WageScale, [DriveTime] = @DriveTime, [Other] = @Other, [Notes] = @Notes WHERE [ID] = @ID" SelectCommand="GetMyCurrentTimeSheet" SelectCommandType="StoredProcedure" >
-            <DeleteParameters>
-                <asp:Parameter Name="ID" Type="Int64" />
-            </DeleteParameters>
-            <InsertParameters>
-                <asp:Parameter Name="ProjectNumber" Type="String" />
-                <asp:Parameter Name="ProjectName" Type="String" />
-                <asp:Parameter Name="DateWorked"  DbType="Date"/>
-                <asp:Parameter Name="Employee" Type="String" />
-                <asp:Parameter Name="Hours" Type="Double" />
-                <asp:Parameter Name="WageScale" Type="Boolean" />
-                <asp:Parameter Name="DriveTime" Type="Boolean" />
-                <asp:Parameter Name="PreProject" Type="Boolean" />
-                <asp:Parameter Name="CorporateEvents" Type="Boolean" />
-                <asp:Parameter Name="PTO" Type="Boolean" />
-                <asp:Parameter Name="Holiday" Type="Boolean" />
-                <asp:Parameter Name="Other" Type="Boolean" />
-                <asp:Parameter Name="Notes" Type="String" />
-            </InsertParameters>
-            <SelectParameters>
-                <asp:ControlParameter ControlID="lblWelcome" Name="Employee" PropertyName="Text" Type="String" />
-                <asp:Parameter Name="Approved" Type="String" DefaultValue="Not Approved" />
-            </SelectParameters>
-            <UpdateParameters>
-                <asp:Parameter Name="ProjectNumber" Type="String" />
-                <asp:Parameter Name="ProjectName" Type="String" />
-                <asp:Parameter Name="DateWorked"  DbType="Date"/>
-                <asp:Parameter Name="Employee" Type="String" />
-                <asp:Parameter Name="Hours" Type="Double" />
-                <asp:Parameter Name="WageScale" Type="Boolean" />
-                <asp:Parameter Name="DriveTime" Type="Boolean" />
-                <asp:Parameter Name="PreProject" Type="Boolean" />
-                <asp:Parameter Name="CorporateEvents" Type="Boolean" />
-                <asp:Parameter Name="PTO" Type="Boolean" />
-                <asp:Parameter Name="Holiday" Type="Boolean" />
-                <asp:Parameter Name="Other" Type="Boolean" />
-                <asp:Parameter Name="Notes" Type="String" />
-                <asp:Parameter Name="ID" Type="Int64" />
-            </UpdateParameters>
-        </asp:SqlDataSource>
-        <p></p>
-                <div runat="server" style="width:100%">
-        <asp:Label ID="lblTotalHours" runat="server" Text="" Font-Size="36pt"></asp:Label><p></p>
-                </div>
-        <%--<asp:Button ID="btnEnterTime" runat="server" Text="Enter Time" Width="300px" Height="150px" Font-Size="36pt" OnClick="btnEnterTime_Click"  CssClass="optionButton" />--%>
-        <p></p>
-        <asp:Button ID="btnLastWeek" runat="server" Text="Last Week" OnClick="btnLastWeek_Click" CssClass="submitButton" />
        </ContentTemplate>                                           
             </asp:UpdatePanel>
 

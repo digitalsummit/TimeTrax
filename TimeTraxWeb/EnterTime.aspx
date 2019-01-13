@@ -179,11 +179,7 @@
                     <asp:Label ID="lblSubmitView2" runat="server" Text="" Font-Size="36pt"></asp:Label>
                 </asp:TableCell>
             </asp:TableRow>
-<%--            <asp:TableRow>
-                <asp:TableCell>
-                    <asp:Button ID="btnHome" runat="server" Text="Home" OnClick="btnHome_Click" CssClass="homeButton" />
-                </asp:TableCell><asp:TableCell></asp:TableCell>
-            </asp:TableRow>--%>
+
         </asp:Table>
     </div>
 

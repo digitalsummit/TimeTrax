@@ -162,10 +162,6 @@ namespace TimeTrax
 
         }
 
-        protected void btnHome_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Home.aspx", true);
-        }
 
         protected void GridView1_Sorting(object sender, GridViewSortEventArgs e)
         {

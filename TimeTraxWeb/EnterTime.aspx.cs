@@ -232,11 +232,7 @@ namespace TimeTrax
         {
             Response.Redirect("ReviewCurrentTime.aspx");
         }
-
-        protected void btnHome_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Home.aspx", true);
-        }
+              
 
         protected void ImageButton1_Click(object sender, System.Web.UI.ImageClickEventArgs e)
         {
