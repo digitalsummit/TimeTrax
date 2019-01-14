@@ -20,9 +20,11 @@ namespace TimeTrax
         protected void FillDropDownList1()
         {
             string sqlCmdText = string.Empty;
-            string managerID = "18";
+            string managerID = string.Empty;
+            string username = Session["EmployeeName"].ToString();
             DataSet ds = new DataSet();
-            sqlCmdText = "FillEmployeeListByManager";
+            //sqlCmdText = "FillEmployeeListByManager";  FillEmployeeListOfManager
+            sqlCmdText = "FillEmployeeListOfManager";
             SqlConnection conn = new SqlConnection(Convert.ToString(ConfigurationManager.ConnectionStrings["TimeTraxConnectionString"]));
             using (conn)
             {
@@ -30,7 +32,7 @@ namespace TimeTrax
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = sqlCmdText;
-                cmd.Parameters.AddWithValue("@Manager", managerID);
+                cmd.Parameters.AddWithValue("@username", username);
                 cmd.Connection = conn;
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(ds);
