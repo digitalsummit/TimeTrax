@@ -21,7 +21,7 @@
                 </asp:TableRow>
             </asp:Table>
             <div runat="server" style="width:100%">
-            <asp:Label ID="Label1" runat="server" Text="Decrease Hours: ⮟ Increase Hours: ⮝ " BackColor="Tan" ForeColor="#428BCA" Font-Bold="true" ></asp:Label>
+            <asp:Label ID="Label1" runat="server" Text="Decrease Hours:&#x2207; Increase Hours: &#x2206; " BackColor="Tan" ForeColor="#428BCA" Font-Bold="true" ></asp:Label>
             </div>
 
         <asp:GridView ID="GridView1" runat="server" AllowPaging="False" AllowSorting="True" AutoGenerateColumns="False" AutoGenerateSelectButton="false" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" DataKeyNames="ID" OnSorting="GridView1_Sorting"  >
@@ -40,14 +40,14 @@
                <asp:BoundField DataField="Employee" HeaderText="Employee" SortExpression="Employee"  ReadOnly="True" Visible="false" />
                <asp:TemplateField>
                <ItemTemplate>
-                      <asp:LinkButton ID="btnSubtractTime" runat="server" CommandArgument='<%#Eval("ID")%>' OnCommand="lnkSubstractTime" Text="⮟">
+                      <asp:LinkButton ID="btnSubtractTime" runat="server" CommandArgument='<%#Eval("ID")%>' OnCommand="lnkSubstractTime" Text="&#x2207">
                       </asp:LinkButton>
                </ItemTemplate>
                </asp:TemplateField>
                 <asp:BoundField DataField="Hours" HeaderText="Hours" SortExpression="Hours" />
                 <asp:TemplateField>
                 <ItemTemplate>
-                      <asp:LinkButton ID="btnAddTime" runat="server" CommandArgument='<%#Eval("ID")%>' OnCommand="lnkAddTime" Text="⮝">
+                      <asp:LinkButton ID="btnAddTime" runat="server" CommandArgument='<%#Eval("ID")%>' OnCommand="lnkAddTime" Text="&#x2206">
                       </asp:LinkButton>
                </ItemTemplate>
         </asp:TemplateField>
