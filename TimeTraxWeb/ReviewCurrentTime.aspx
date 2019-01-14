@@ -21,7 +21,7 @@
                 </asp:TableRow>
             </asp:Table>
             <div runat="server" style="width:100%">
-            <asp:Label ID="Label1" runat="server" Text="Decrease Hours:&#x2207; Increase Hours: &#x2206; " BackColor="Tan" ForeColor="#428BCA" Font-Bold="true" ></asp:Label>
+            <asp:Label ID="Label1" runat="server" Text="Decrease Hours:&#x2207; &nbsp;&nbsp;&nbsp; Increase Hours: &#x2206; " BackColor="Tan" ForeColor="#428BCA" Font-Bold="true" ></asp:Label>
             </div>
 
         <asp:GridView ID="GridView1" runat="server" AllowPaging="False" AllowSorting="True" AutoGenerateColumns="False" AutoGenerateSelectButton="false" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" DataKeyNames="ID" OnSorting="GridView1_Sorting"  >
