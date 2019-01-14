@@ -127,7 +127,7 @@ namespace TimeTrax
             {
                 //lblSubmitView1.Text = "Saved. Ready for more.";
                 SetCheckBoxesToFalse();
-                cbProjectNumber.Checked = true;
+                rbProjectNumber.Checked = true;
                 //divCalendar.Visible = false;
                 //this.View1.Focus();
                 //View ViewSetter = FindControl("View1") as View;
@@ -143,12 +143,12 @@ namespace TimeTrax
         {
             string returnVal = "Error";
             string employeeName = lblWelcome.Text.Replace("Submit time for: ", "");
-            int projectChecked = (cbProjectNumber.Checked == true) ? 1 : 0;
+            int projectChecked = (rbProjectNumber.Checked == true) ? 1 : 0;
             if (txtProjectNumber.Text.Length > 4)
             {
                 projectChecked = 1;
                 SetCheckBoxesToFalse();
-                cbProjectNumber.Checked = true;
+                rbProjectNumber.Checked = true;
             }
 
             int preProject = (cbPreProject.Checked == true) ? 1 : 0;
@@ -222,7 +222,7 @@ namespace TimeTrax
             if (txtProjectNumber.Text.Length > 4)
             {
                 SetCheckBoxesToFalse();
-                cbProjectNumber.Checked = true;
+                rbProjectNumber.Checked = true;
             }
             RequiredFieldValidator1.Enabled = false;
             RequiredFieldValidator2.Enabled = true;
@@ -257,7 +257,7 @@ namespace TimeTrax
             Tab1.CssClass = "Initial";
             Tab2.CssClass = "Clicked";
             tblView2.CssClass = "SelectedView";
-            tblView1.CssClass = "UnselectedView";
+            //tblView1.CssClass = "UnselectedView";
             MainView.ActiveViewIndex = 1;
             btnSubmit.ValidationGroup = "Overhead";
             lblSubmitView2.Text = string.Empty;
@@ -303,8 +303,8 @@ namespace TimeTrax
 
         protected void SetCheckBoxesToFalse()
         {
-            cbProjectNumber.Checked = false;
-            //cbProjectNumber.BackColor = System.Drawing.Color.White;
+            //rbProjectNumber.Checked = false;
+            //rbProjectNumber.BackColor = System.Drawing.Color.White;
             cbHoliday.Checked = false;
             //cbHoliday.BackColor = System.Drawing.Color.White;
             cbPreProject.Checked = false;
@@ -350,10 +350,10 @@ namespace TimeTrax
             //    cbDriveTime.BackColor = System.Drawing.Color.White;
         }
 
-        protected void cbProjectNumber_CheckedChanged(object sender, EventArgs e)
+        protected void rbProjectNumber_CheckedChanged(object sender, EventArgs e)
         {
             SetCheckBoxesToFalse();
-            cbProjectNumber.Checked = true;
+            rbProjectNumber.Checked = true;
             RequiredFieldValidator1.Enabled = false;
             RequiredFieldValidator2.Enabled = true;
 
