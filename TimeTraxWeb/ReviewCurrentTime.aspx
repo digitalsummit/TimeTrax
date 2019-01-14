@@ -6,21 +6,21 @@
 
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            
+            <asp:Table ID="Table1" runat="server">
+                <asp:TableHeaderRow><asp:TableHeaderCell Width="120px"><asp:Label ID="lblSumHours" runat="server" Text="" BackColor="LightGoldenrodYellow" ></asp:Label></asp:TableHeaderCell><asp:TableHeaderCell Width="108px"><asp:Label ID="lblSumLastWeek" runat="server" Text="" BackColor="Khaki"></asp:Label></asp:TableHeaderCell><asp:TableHeaderCell Width="108px"><asp:Label ID="lblSumNextWeek" runat="server" Text="" BackColor="LightGoldenrodYellow"></asp:Label></asp:TableHeaderCell><asp:TableHeaderCell Width="108px"><asp:Label ID="lblSumThisWeek" runat="server" Text="" BackColor="Khaki"></asp:Label></asp:TableHeaderCell></asp:TableHeaderRow>
+                </asp:Table>
+            <asp:Table runat="server">
+                <asp:TableRow>
+                    <asp:TableCell Width="70px"><asp:Label ID="lblSumCurrentMonday" runat="server" Text="" BackColor="Khaki"></asp:Label></asp:TableCell>
+                    <asp:TableCell Width="70px"><asp:Label ID="lblSumCurrentTuesday" runat="server" Text="" BackColor="LightGoldenrodYellow"></asp:Label></asp:TableCell>
+                    <asp:TableCell Width="70px"><asp:Label ID="lblSumCurrentWednesday" runat="server" Text="" BackColor="Khaki"></asp:Label></asp:TableCell>
+                    <asp:TableCell Width="70px"><asp:Label ID="lblSumCurrentThursday" runat="server" Text="" BackColor="LightGoldenrodYellow" ></asp:Label></asp:TableCell>
+                    <asp:TableCell Width="70px"><asp:Label ID="lblSumCurrentFriday" runat="server" Text="" BackColor="Khaki"></asp:Label></asp:TableCell>
+                    <asp:TableCell Width="70px"><asp:Label ID="lblSumCurrentSaturday" runat="server" Text="" BackColor="LightGoldenrodYellow"></asp:Label></asp:TableCell>
+                    <asp:TableCell Width="70px"><asp:Label ID="lblSumCurrentSunday" runat="server" Text="" BackColor="Khaki"></asp:Label></asp:TableCell>
+                </asp:TableRow>
+            </asp:Table>
             <div runat="server" style="width:100%">
-            <asp:Label ID="lblSumHours" runat="server" Text="" BackColor="LightGoldenrodYellow" ></asp:Label>
-            <asp:Label ID="lblSumLastWeek" runat="server" Text="" BackColor="Khaki"></asp:Label>
-            <asp:Label ID="lblSumNextWeek" runat="server" Text="" BackColor="LightGoldenrodYellow"></asp:Label>
-            <asp:Label ID="lblSumThisWeek" runat="server" Text="" BackColor="Khaki"></asp:Label>
-                <p></p>
-            <asp:Label ID="lblSumCurrentMonday" runat="server" Text="" BackColor="Khaki"></asp:Label>
-            <asp:Label ID="lblSumCurrentTuesday" runat="server" Text="" BackColor="LightGoldenrodYellow"></asp:Label>
-            <asp:Label ID="lblSumCurrentWednesday" runat="server" Text="" BackColor="Khaki"></asp:Label>
-            <asp:Label ID="lblSumCurrentThursday" runat="server" Text="" BackColor="LightGoldenrodYellow" ></asp:Label>
-            <asp:Label ID="lblSumCurrentFriday" runat="server" Text="" BackColor="Khaki"></asp:Label>
-            <asp:Label ID="lblSumCurrentSaturday" runat="server" Text="" BackColor="LightGoldenrodYellow"></asp:Label>
-            <asp:Label ID="lblSumCurrentSunday" runat="server" Text="" BackColor="Khaki"></asp:Label>
-                <p></p>
             <asp:Label ID="Label1" runat="server" Text="Decrease Hours: ⮟ Increase Hours: ⮝ " BackColor="Tan" ForeColor="#428BCA" Font-Bold="true" ></asp:Label>
             </div>
 

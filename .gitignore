@@ -260,3 +260,5 @@ paket-files/
 __pycache__/
 *.pyc
 /TimeTraxWeb.zip
+/TimeTraxWebSatPmBeforeGoLive.zip
+/TimeTraxWebSunAfterSumTable.zip

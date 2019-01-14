@@ -56,7 +56,7 @@ namespace TimeTrax
                 conn.Close();
 
             }
-            lblSumHours.Text = " Total Hours Shown: " + ds.Tables[0].Rows[0]["SumHours"].ToString();
+            lblSumHours.Text = "Total shown: " + ds.Tables[0].Rows[0]["SumHours"].ToString();
             lblSumLastWeek.Text = " Last Week:" +  ds.Tables[0].Rows[0]["SumLastWeek"].ToString();
             lblSumThisWeek.Text = " This Week:" + ds.Tables[0].Rows[0]["SumThisWeek"].ToString();
             lblSumNextWeek.Text = " Next Week:" + ds.Tables[0].Rows[0]["SumNextWeek"].ToString();
