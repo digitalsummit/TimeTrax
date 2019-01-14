@@ -12,7 +12,7 @@
 </head>
 <body>--%>
 
-    <div runat="server" style="height:50px"></div>
+    <div runat="server" style="height: 50px"></div>
     <div style="width: 100%;" runat="server">
         <%--<asp:Label ID="Label4" runat="server" Text="Improve Group TimeTrax" CssClass="titlebar"></asp:Label><p></p>--%>
         <asp:Label ID="lblWelcome" Visible="false" runat="server" Text="Label" CssClass="labelWide"></asp:Label>
@@ -21,19 +21,26 @@
 
         <div class="form-group">
             <asp:Label for="txtDateWorked" CssClass="control-label col-sm-2" runat="server" Text="Date submitted for:"></asp:Label>
-            <div class="col-sm-10">
+            <div class="col-sm-10" style="max-width: 200px">
                 <asp:TextBox ID="txtDateWorked" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
         </div>
         <div class="form-group">
             <asp:Label ID="Label3" CssClass="control-label col-sm-2" runat="server" Text="Hours:"></asp:Label>
-            <div class="col-sm-10">
+            <div class="col-sm-10" style="max-width: 200px">
                 <asp:DropDownList ID="ddlHours" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlHours_SelectedIndexChanged"></asp:DropDownList>
             </div>
         </div>
 
         <div class="form-group">
-            <asp:Label ID="Label1" CssClass="control-label col-sm-2" runat="server" Text="Wage Scale:"></asp:Label>
+            <asp:Label ID="Label2" CssClass="control-label col-sm-2" for="cbDriveTime" runat="server" Text="Travel Time:"></asp:Label>
+            <div class="col-sm-10">
+                <asp:CheckBox ID="cbDriveTime" runat="server" CssClass="CheckboxTravelTime" OnCheckedChanged="cbDriveTime_CheckedChanged" AutoPostBack="true" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <asp:Label ID="Label1" CssClass="control-label col-sm-2" for="cbWageScale" runat="server" Text="Wage Scale:"></asp:Label>
             <div class="col-sm-10">
                 <asp:CheckBox ID="cbWageScale" runat="server" OnCheckedChanged="cbWageScale_CheckedChanged" AutoPostBack="true" />
             </div>
@@ -93,22 +100,52 @@
     <div style="float: left; width: 100%" runat="server" id="divMultiView">
         <asp:MultiView ID="MainView" runat="server">
             <asp:View ID="View1" runat="server">
+
+
+
+
                 <div id="scaled" class="scaled">
                     <asp:Table runat="server" CssClass="SelectedView" ID="tblView1">
                         <asp:TableRow>
                             <asp:TableCell>
-                                <asp:CheckBox ID="cbProjectNumber" runat="server" Text="Project#:" Checked="true" AutoPostBack="true" OnCheckedChanged="cbProjectNumber_CheckedChanged" CssClass="CheckboxOther" />
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <asp:RadioButton ID="rbProjectNumber" Text="Project Number" runat="server" GroupName="rbProjectBased" />
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <asp:TextBox ID="txtProjectNumber" runat="server" CssClass="form-control" PlaceHolder="Project Number"></asp:TextBox>
+                                    </div>
+                                </div>
+
+                                <%--                                <div class="form-group">
+                                    <%--                                    <asp:Label ID="Label4" CssClass="control-label col-sm-2" for="rbProjectNumber" runat="server" Text="Project Number:"></asp:Label>--%>
+                                <%--                                 <label class="radio-inline">
+                                        Project Number</label>--%>
+                                <%--                               <div class="col-sm-10">
+                                        
+                                    </div>--%>
+
+                                <%--                                    <div class="col-sm-10">--%>
+
+                                <%--</div>
+                                </div>--%>
+                            </asp:TableCell>
+
+                            <%--  <asp:CheckBox ID="cbProjectNumber" runat="server" Text="Project#:" Checked="true" AutoPostBack="true" OnCheckedChanged="cbProjectNumber_CheckedChanged" CssClass="CheckboxOther" />
                             </asp:TableCell><asp:TableCell>
                                 <asp:TextBox ID="txtProjectNumber" runat="server" CssClass="textNote" Font-Size="36pt" Width="300px" OnTextChanged="txtProjectNumber_TextChanged" AutoPostBack="true"></asp:TextBox>
                             </asp:TableCell><asp:TableCell Width="300px"></asp:TableCell>
                         </asp:TableRow>
-                        <asp:TableRow></asp:TableRow>
+                        <asp:TableRow>
+                            --%>
+                        </asp:TableRow>
                     </asp:Table>
                 </div>
                 <asp:Table runat="server" CssClass="SelectedView" ID="Table1">
                     <asp:TableRow>
                         <asp:TableCell>
-                            <asp:CheckBox ID="cbDriveTime" runat="server" Text="Travel Time" CssClass="CheckboxTravelTime" OnCheckedChanged="cbDriveTime_CheckedChanged" AutoPostBack="true" />
+                            <%--<asp:CheckBox ID="cbDriveTime" runat="server" Text="Travel Time" CssClass="CheckboxTravelTime" OnCheckedChanged="cbDriveTime_CheckedChanged" AutoPostBack="true" />--%>
                         </asp:TableCell>
                     </asp:TableRow>
                     <asp:TableRow>
@@ -170,10 +207,10 @@
             <asp:TableRow>
                 <asp:TableCell>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="RequiredFieldValidator" Display="Dynamic" Text="Note required if no project#" ControlToValidate="txtPreProjectNotes" Enabled="false" Font-Bold="True" ForeColor="Red" ValidationGroup="ProjectBased"></asp:RequiredFieldValidator>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="RequiredFieldValidator" Display="Dynamic" Text="Enter Project# or Select another option" ControlToValidate="txtProjectNumber"  Enabled="false" Font-Bold="True" ForeColor="Red" ValidationGroup="ProjectBased"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="RequiredFieldValidator" Display="Dynamic" Text="Enter Project# or Select another option" ControlToValidate="txtProjectNumber" Enabled="false" Font-Bold="True" ForeColor="Red" ValidationGroup="ProjectBased"></asp:RequiredFieldValidator>
                     <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="Must choose hours" ControlToValidate="ddlHours" ValueToCompare="0" Operator="NotEqual" Type="Double" ForeColor="Red" Font-Bold="true" ValidationGroup="ProjectBased"></asp:CompareValidator>
-                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="RequiredFieldValidator" Display="Dynamic" Text="Note required" ControlToValidate="txtOther" Enabled="false" Font-Bold="True" ForeColor="Red" ValidationGroup="Overhead"></asp:RequiredFieldValidator>
-                    <asp:Button ID="btnSubmit" runat="server" Text="SUBMIT" OnClick="btnSubmit_Click" CssClass="submitButton" ValidationGroup="ProjectBased"/>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="RequiredFieldValidator" Display="Dynamic" Text="Note required" ControlToValidate="txtOther" Enabled="false" Font-Bold="True" ForeColor="Red" ValidationGroup="Overhead"></asp:RequiredFieldValidator>
+                    <asp:Button ID="btnSubmit" runat="server" Text="SUBMIT" OnClick="btnSubmit_Click" CssClass="submitButton" ValidationGroup="ProjectBased" />
                     <asp:CompareValidator ID="CompareValidator2" runat="server" ErrorMessage="Must choose hours" ControlToValidate="ddlHours" ValueToCompare="0" Operator="NotEqual" Type="Double" ForeColor="Red" Font-Bold="true" ValidationGroup="Overhead"></asp:CompareValidator>
                 </asp:TableCell><asp:TableCell>
                     <asp:Label ID="lblSubmitView2" runat="server" Text="" Font-Size="36pt"></asp:Label>

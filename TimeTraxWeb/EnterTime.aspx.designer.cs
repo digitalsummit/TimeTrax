@@ -49,6 +49,24 @@ namespace TimeTrax {
         protected global::System.Web.UI.WebControls.DropDownList ddlHours;
         
         /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
+        
+        /// <summary>
+        /// cbDriveTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbDriveTime;
+        
+        /// <summary>
         /// Label1 control.
         /// </summary>
         /// <remarks>
@@ -130,13 +148,13 @@ namespace TimeTrax {
         protected global::System.Web.UI.WebControls.Table tblView1;
         
         /// <summary>
-        /// cbProjectNumber control.
+        /// rbProjectNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbProjectNumber;
+        protected global::System.Web.UI.WebControls.RadioButton rbProjectNumber;
         
         /// <summary>
         /// txtProjectNumber control.
@@ -155,15 +173,6 @@ namespace TimeTrax {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Table Table1;
-        
-        /// <summary>
-        /// cbDriveTime control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbDriveTime;
         
         /// <summary>
         /// btnGetProjectName control.
