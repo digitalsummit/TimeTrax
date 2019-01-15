@@ -11,7 +11,9 @@ namespace TimeTrax
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-            { 
+            {
+                Session["WeekValue"] = "Last Week";
+                Session["approvedType"] = "Unapproved";
                 FillDropDownList1();
 
             }
@@ -23,7 +25,6 @@ namespace TimeTrax
             string managerID = string.Empty;
             string username = Session["EmployeeName"].ToString();
             DataSet ds = new DataSet();
-            //sqlCmdText = "FillEmployeeListByManager";  FillEmployeeListOfManager
             sqlCmdText = "FillEmployeeListOfManager";
             SqlConnection conn = new SqlConnection(Convert.ToString(ConfigurationManager.ConnectionStrings["TimeTraxConnectionString"]));
             using (conn)
@@ -99,12 +100,14 @@ namespace TimeTrax
             {
                 Session["sortExp"] = "ID";
             }
-
             string employeeName = DropDownList1.SelectedItem.ToString();
             string sqlCmdText = string.Empty;
+            string approveType = string.Empty;
+            approveType = Session["approvedType"].ToString();
             DataSet ds = new DataSet();
             // sqlCmdText = "GetCurrentTimeSheetForApproval";
-            sqlCmdText = "[GetCurrentTimeSheetForApprovalShowHours]";
+            // sqlCmdText = "[GetCurrentTimeSheetForApprovalShowHours]"; 
+            sqlCmdText = "[GetCurrentTimeSheetForApprovalByWeek]";
             SqlConnection conn = new SqlConnection(Convert.ToString(ConfigurationManager.ConnectionStrings["TimeTraxConnectionString"]));
             using (conn)
             {
@@ -113,6 +116,8 @@ namespace TimeTrax
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = sqlCmdText;
                 cmd.Parameters.AddWithValue("@Employee", employeeName);
+                cmd.Parameters.AddWithValue("@Week", Session["WeekValue"].ToString());
+                cmd.Parameters.AddWithValue("@ApproveType", approveType);
                 cmd.Connection = conn;
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(ds);
@@ -138,10 +143,7 @@ namespace TimeTrax
                 GridView1.DataSource = sortedDT;
                 GridView1.DataBind();
             }
-            //
-            //GridView1.DataSource = timesheet;
-            //GridView1.DataSource = Session["timesheet"];
-            //GridView1.DataBind();
+            GetDayTotals();
 
         }
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -154,6 +156,7 @@ namespace TimeTrax
             GridView1_GetData();
             btnApproveAll.Text =  "Approve All time for: " + DropDownList1.SelectedValue.ToString();
             btnApproveAll.Visible = true;
+            RadioButtonList1.Visible = true;
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -209,7 +212,55 @@ namespace TimeTrax
             }
             GridView1_GetData();
         }
+        protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Session["WeekValue"] = RadioButtonList1.SelectedValue.ToString();
+            GridView1_GetData();
+        }
 
-       
+        protected void rbIncludeApprovedTime_CheckedChanged(object sender, EventArgs e)
+        {
+            Session["approvedType"] = "IncludeApproved";
+            GridView1_GetData();
+        }
+
+        protected void rbUnapprovedTime_CheckedChanged(object sender, EventArgs e)
+        {
+            Session["approvedType"] = "Unapproved";
+            GridView1_GetData();
+        }
+
+        protected void GetDayTotals()
+        {
+            string employeeName = DropDownList1.SelectedItem.ToString();
+            string sqlCmdText = string.Empty;
+            string approveType = string.Empty;
+            approveType = Session["approvedType"].ToString();
+            DataSet ds = new DataSet();
+            sqlCmdText = "[GetCurrentTimeSheetForApprovalByDay]";
+            SqlConnection conn = new SqlConnection(Convert.ToString(ConfigurationManager.ConnectionStrings["TimeTraxConnectionString"]));
+            using (conn)
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = sqlCmdText;
+                cmd.Parameters.AddWithValue("@Employee", employeeName);
+                cmd.Parameters.AddWithValue("@Week", Session["WeekValue"].ToString());
+                cmd.Parameters.AddWithValue("@ApproveType", approveType);
+                cmd.Connection = conn;
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(ds);
+                conn.Close();
+
+            }
+            
+        DataTable dt = ds.Tables[0];
+        GridView2.DataSource = dt;
+        GridView2.DataBind();
+
+        }
+
+      
     }
 }

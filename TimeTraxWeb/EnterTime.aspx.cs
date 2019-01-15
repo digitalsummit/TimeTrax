@@ -127,7 +127,10 @@ namespace TimeTrax
             {
                 //lblSubmitView1.Text = "Saved. Ready for more.";
                 SetCheckBoxesToFalse();
-                rbProjectNumber.Checked = true;
+                //rbProjectNumber.Checked = true;
+                cbProjectNumber.Checked = true;
+                cbTravelTime.Checked = false;
+                cbWageScale.Checked = false;
                 //divCalendar.Visible = false;
                 //this.View1.Focus();
                 //View ViewSetter = FindControl("View1") as View;
@@ -143,27 +146,29 @@ namespace TimeTrax
         {
             string returnVal = "Error";
             string employeeName = lblWelcome.Text.Replace("Submit time for: ", "");
-            int projectChecked = (rbProjectNumber.Checked == true) ? 1 : 0;
+            //int projectChecked = (rbProjectNumber.Checked == true) ? 1 : 0;
+            int projectChecked = (cbProjectNumber.Checked == true) ? 1 : 0;
             if (txtProjectNumber.Text.Length > 4)
             {
                 projectChecked = 1;
                 SetCheckBoxesToFalse();
-                rbProjectNumber.Checked = true;
+                // rbProjectNumber.Checked = true;
+                cbProjectNumber.Checked = true;
             }
 
             int preProject = (cbPreProject.Checked == true) ? 1 : 0;
             int strategicInit = (cbHoliday.Checked == true) ? 1 : 0;
             int CorporateEvents = (cbCorporateEvents.Checked == true) ? 1 : 0;
-            int Other = (cbOther.Checked == true) ? 1 : 0;
+            //int Other = (cbOther.Checked == true) ? 1 : 0;
             int wageScale = (cbWageScale.Checked == true) ? 1 : 0;
-            int driveTime = (cbDriveTime.Checked == true) ? 1 : 0;
+            int TravelTime = (cbTravelTime.Checked == true) ? 1 : 0;
             int PTO = (cbPTO.Checked == true) ? 1 : 0;
 
-            if (Other == 1)
-            {
-                txtPreProjectNotes.Text = txtOther.Text;
+            //if (Other == 1)
+            //{
+            //    txtPreProjectNotes.Text = txtOther.Text;
 
-            }
+            //}
 
             string projectName = string.Empty;
             projectName = txtProjectName.Text.Trim();
@@ -187,11 +192,11 @@ namespace TimeTrax
                     cmd.Parameters.AddWithValue("@Employee", employeeName);
                     cmd.Parameters.AddWithValue("@Hours", ddlHours.SelectedValue.ToString());
                     cmd.Parameters.AddWithValue("@WageScale", wageScale);
-                    cmd.Parameters.AddWithValue("@DriveTime", driveTime);
+                    cmd.Parameters.AddWithValue("@DriveTime", TravelTime);
                     cmd.Parameters.AddWithValue("@PreProject", preProject);
                     cmd.Parameters.AddWithValue("@Holiday", strategicInit);
                     cmd.Parameters.AddWithValue("@CorporateEvents", CorporateEvents);
-                    cmd.Parameters.AddWithValue("@Other", Other);
+                    cmd.Parameters.AddWithValue("@Other", string.Empty);
                     cmd.Parameters.AddWithValue("@PTO", PTO);
                     cmd.Parameters.AddWithValue("@Notes", txtPreProjectNotes.Text);
                     cmd.Connection = conn;
@@ -204,7 +209,7 @@ namespace TimeTrax
                 txtProjectNumber.Text = string.Empty;
                 txtProjectName.Text = string.Empty;
                 txtPreProjectNotes.Text = string.Empty;
-                txtOther.Text = string.Empty;
+                //txtOther.Text = string.Empty;
                 returnVal = "Success";
             }
             catch(Exception ex)
@@ -222,7 +227,8 @@ namespace TimeTrax
             if (txtProjectNumber.Text.Length > 4)
             {
                 SetCheckBoxesToFalse();
-                rbProjectNumber.Checked = true;
+                // rbProjectNumber.Checked = true;
+                cbProjectNumber.Checked = true;
             }
             RequiredFieldValidator1.Enabled = false;
             RequiredFieldValidator2.Enabled = true;
@@ -248,7 +254,7 @@ namespace TimeTrax
             tblView2.CssClass = "UnselectedView";
             MainView.ActiveViewIndex = 0;
             btnSubmit.ValidationGroup = "ProjectBased";
-            RequiredFieldValidator3.Enabled = false;
+            //RequiredFieldValidator3.Enabled = false;
             lblSubmitView2.Text = string.Empty;
         }
 
@@ -276,6 +282,13 @@ namespace TimeTrax
 
         }
 
+        protected void cbProjectNumber_CheckedChanged(object sender, EventArgs e)
+        {
+            SetCheckBoxesToFalse();
+            cbProjectNumber.Checked = true;
+
+        }
+
         protected void cbCorporateEvents_CheckedChanged(object sender, EventArgs e)
         {
             SetCheckBoxesToFalse();
@@ -291,37 +304,40 @@ namespace TimeTrax
             //cbHoliday.BackColor = System.Drawing.Color.LightGreen;
         }
 
-        protected void cbOther_CheckedChanged(object sender, EventArgs e)
-        {
-            SetCheckBoxesToFalse();
-            cbOther.Checked = true;
-            RequiredFieldValidator3.Enabled = true;
-            txtOther.Visible = true;
-            lblOtherNote.Visible = true;
-            //cbOther.BackColor = System.Drawing.Color.LightGreen;
-        }
+        //protected void cbOther_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    SetCheckBoxesToFalse();
+        //    cbOther.Checked = true;
+        //    RequiredFieldValidator3.Enabled = true;
+        //    txtOther.Visible = true;
+        //    lblOtherNote.Visible = true;
+        //    //cbOther.BackColor = System.Drawing.Color.LightGreen;
+        //}
 
         protected void SetCheckBoxesToFalse()
         {
-            //rbProjectNumber.Checked = false;
-            //rbProjectNumber.BackColor = System.Drawing.Color.White;
             cbHoliday.Checked = false;
-            //cbHoliday.BackColor = System.Drawing.Color.White;
+            cbProjectNumber.Checked = false;
             cbPreProject.Checked = false;
-            //cbPreProject.BackColor = System.Drawing.Color.White;
-            cbOther.Checked = false;
-            //cbOther.BackColor = System.Drawing.Color.White;
             cbCorporateEvents.Checked = false;
-            //cbCorporateEvents.BackColor = System.Drawing.Color.White;
             cbPTO.Checked = false;
             lblShortNote.Visible = false;
             txtPreProjectNotes.Visible = false;
-            //lblcharCountOutput.Visible = false;
             RequiredFieldValidator1.Enabled = false;
-            RequiredFieldValidator3.Enabled = false;
-            txtOther.Visible = false;
-            lblOtherNote.Visible = false;
             lblSubmitView2.Text = string.Empty;
+
+            //rbProjectNumber.Checked = false;
+            //rbProjectNumber.BackColor = System.Drawing.Color.White;
+            //cbHoliday.BackColor = System.Drawing.Color.White;
+            //cbPreProject.BackColor = System.Drawing.Color.White;
+            // cbOther.Checked = false;
+            //cbOther.BackColor = System.Drawing.Color.White;
+            //cbCorporateEvents.BackColor = System.Drawing.Color.White;
+            //lblcharCountOutput.Visible = false;
+            //RequiredFieldValidator3.Enabled = false;
+            //txtOther.Visible = false;
+            //lblOtherNote.Visible = false;
+
 
         }
 
@@ -340,20 +356,21 @@ namespace TimeTrax
             //    cbWageScale.BackColor = System.Drawing.Color.White;
         }
 
-        protected void cbDriveTime_CheckedChanged(object sender, EventArgs e)
+        protected void cbTravelTime_CheckedChanged(object sender, EventArgs e)
         {
-            //if (cbDriveTime.Checked == true)
+            //if (cbTravelTime.Checked == true)
             //{
-            //    cbDriveTime.BackColor = System.Drawing.Color.LightGreen;
+            //    cbTravelTime.BackColor = System.Drawing.Color.LightGreen;
             //}
             //else
-            //    cbDriveTime.BackColor = System.Drawing.Color.White;
+            //    cbTravelTime.BackColor = System.Drawing.Color.White;
         }
 
         protected void rbProjectNumber_CheckedChanged(object sender, EventArgs e)
         {
             SetCheckBoxesToFalse();
-            rbProjectNumber.Checked = true;
+            // rbProjectNumber.Checked = true;
+            cbProjectNumber.Checked = true;
             RequiredFieldValidator1.Enabled = false;
             RequiredFieldValidator2.Enabled = true;
 
