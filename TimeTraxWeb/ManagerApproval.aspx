@@ -22,9 +22,9 @@
 
             </asp:TableRow>
             </asp:Table>
-
-            <asp:Button ID="btnApproveAll" runat="server" Text="Approve All" CssClass="submitButton" Visible="false" BorderColor="Tan" BackColor="LightGreen" BorderWidth="2px" BorderStyle="Ridge" OnClick="btnApproveAll_Click" />
-
+            <div style="float:right">
+            <asp:Button ID="btnApproveAll" runat="server" Text="Approve All" CssClass="submitButton" Visible="false" BorderColor="Black" BackColor="LightGray" BorderWidth="2px" BorderStyle="Groove"  OnClick="btnApproveAll_Click" /><p></p>
+                </div>
 
         <asp:GridView ID="GridView1" runat="server" AllowPaging="False" AllowSorting="True" AutoGenerateColumns="False" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" DataKeyNames="ID" OnRowDataBound="GridView1_RowDataBound" ForeColor="Black" GridLines="None" AutoGenerateEditButton="false" OnRowCommand="GridView1_RowCommand" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnSorting="GridView1_Sorting" >
             <AlternatingRowStyle BackColor="PaleGoldenrod" />

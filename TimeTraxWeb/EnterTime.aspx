@@ -2,7 +2,6 @@
 
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
     <%--<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -16,6 +15,7 @@
     <div style="width: 100%;" runat="server">
         <%--<asp:Label ID="Label4" runat="server" Text="Improve Group TimeTrax" CssClass="titlebar"></asp:Label><p></p>--%>
         <asp:Label ID="lblWelcome" Visible="false" runat="server" Text="Label" CssClass="labelWide"></asp:Label>
+       
         <%--        <p></p>--%>
 
 
@@ -90,22 +90,19 @@
         </div>--%>
     </div>
     <div style="float: left; width: 100%" runat="server" id="divTabButtons">
-        <asp:Button Text="Project Based" BorderStyle="None" ID="Tab1" CssClass="add-on" runat="server" ValidationGroup="None"
+        <asp:Button Text="Project Based" BorderStyle="Solid" BorderWidth="3px" BorderColor="DarkGray" ID="Tab1" CssClass="add-on" runat="server" ValidationGroup="None"
             OnClick="Tab1_Click" />
 
-        <asp:Button Text="Overhead" BorderStyle="None" ID="Tab2" CssClass="Initial" runat="server" ValidationGroup="None"
+        <asp:Button Text="Overhead" BorderStyle="Solid" BorderWidth="3px" BorderColor="LightGray" ID="Tab2" CssClass="Initial" runat="server" ValidationGroup="None"
             OnClick="Tab2_Click" />
     </div>
     <p></p>
     <div style="float: left; width: 100%" runat="server" id="divMultiView">
         <asp:MultiView ID="MainView" runat="server">
             <asp:View ID="View1" runat="server">
-
-
-
-
+                <div style="border: solid 3px gray;" >
                 <div id="scaled" class="scaled">
-                    <asp:Table runat="server" CssClass="SelectedView" ID="tblView1">
+                    <asp:Table runat="server" CssClass="SelectedView" ID="tblView1" >
                         <asp:TableRow>
                             <asp:TableCell>
 
@@ -172,12 +169,13 @@
                             </asp:Label><asp:TextBox ID="txtPreProjectNotes" runat="server" TextMode="SingleLine" MaxLength="50" Width="80%" Text="" Visible="false"></asp:TextBox>
                         </asp:TableCell>
                     </asp:TableRow>
-                </asp:Table>
+                </asp:Table></div>
             </asp:View>
             <asp:View ID="View2" runat="server">
-                <asp:Table runat="server" ID="tblView2" CssClass="UnselectedView">
-                    <asp:TableRow Height="250px">
-                        <asp:TableCell Width="650px">
+                <div style="border: solid 3px gray; ">
+                <asp:Table runat="server" ID="tblView2" CssClass="UnselectedView" >
+                    <asp:TableRow Height="100px">
+                        <asp:TableCell Width="200px">
                             <asp:CheckBox ID="cbCorporateEvents" runat="server" Text="Corporate Events" AutoPostBack="true" OnCheckedChanged="cbCorporateEvents_CheckedChanged" CssClass="CheckboxStandard" />
                         </asp:TableCell><asp:TableCell>
                             <asp:CheckBox ID="cbPTO" runat="server" Text="PTO" AutoPostBack="true" OnCheckedChanged="cbPTO_CheckedChanged" CssClass="CheckboxStandard" />
@@ -199,7 +197,7 @@
                  <%--   <asp:TableRow>
                         <asp:TableCell></asp:TableCell><asp:TableCell><p></p></asp:TableCell>
                     </asp:TableRow>--%>
-                </asp:Table>
+                </asp:Table></div>
             </asp:View>
         </asp:MultiView>
     </div>
@@ -212,9 +210,10 @@
                     <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="Must choose hours" ControlToValidate="ddlHours" ValueToCompare="0" Operator="NotEqual" Type="Double" ForeColor="Red" Font-Bold="true" ValidationGroup="ProjectBased"></asp:CompareValidator>
                     <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="RequiredFieldValidator" Display="Dynamic" Text="Note required" ControlToValidate="txtOther" Enabled="false" Font-Bold="True" ForeColor="Red" ValidationGroup="Overhead"></asp:RequiredFieldValidator>--%>
                     <asp:Button ID="btnSubmit" runat="server" Text="SUBMIT" OnClick="btnSubmit_Click" CssClass="submitButton" ValidationGroup="ProjectBased" />
+                     <asp:Label ID="lblSubmitView2" runat="server" Text="" Font-Size="20pt"></asp:Label>
                     <asp:CompareValidator ID="CompareValidator2" runat="server" ErrorMessage="Must choose hours" ControlToValidate="ddlHours" ValueToCompare="0" Operator="NotEqual" Type="Double" ForeColor="Red" Font-Bold="true" ValidationGroup="Overhead"></asp:CompareValidator>
                 </asp:TableCell><asp:TableCell>
-                    <asp:Label ID="lblSubmitView2" runat="server" Text="" Font-Size="36pt"></asp:Label>
+                  <%--  <asp:Label ID="lblSubmitView2" runat="server" Text="" Font-Size="36pt"></asp:Label>--%>
                 </asp:TableCell>
             </asp:TableRow>
 

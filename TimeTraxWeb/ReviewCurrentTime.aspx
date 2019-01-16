@@ -34,9 +34,10 @@
                       </asp:LinkButton>
                 </ItemTemplate>
                </asp:TemplateField>
-               <asp:BoundField DataField="ProjectNumber" HeaderText="ProjectNumber" SortExpression="ProjectNumber" ReadOnly="True"   />
+               <asp:BoundField DataField="ProjectNumber" HeaderText="Project" SortExpression="ProjectNumber" ReadOnly="True"   />
                <asp:BoundField DataField="ProjectName" HeaderText="ProjectName" SortExpression="ProjectName" ItemStyle-Width="300px" ReadOnly="True"  />
                <asp:BoundField DataField="DateWorked" HeaderText="DateWorked" SortExpression="DateWorked" ReadOnly="True"  />
+                <asp:BoundField DataField="Day" HeaderText="Day" SortExpression="DateWorked" ReadOnly="True"  />
                <asp:BoundField DataField="Employee" HeaderText="Employee" SortExpression="Employee"  ReadOnly="True" Visible="false" />
                <asp:TemplateField>
                <ItemTemplate>

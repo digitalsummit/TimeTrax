@@ -319,15 +319,6 @@ namespace TimeTrax {
         protected global::System.Web.UI.WebControls.Button btnSubmit;
         
         /// <summary>
-        /// CompareValidator2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator CompareValidator2;
-        
-        /// <summary>
         /// lblSubmitView2 control.
         /// </summary>
         /// <remarks>
@@ -335,5 +326,14 @@ namespace TimeTrax {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblSubmitView2;
+        
+        /// <summary>
+        /// CompareValidator2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator CompareValidator2;
     }
 }

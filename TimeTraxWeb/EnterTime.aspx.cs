@@ -256,6 +256,8 @@ namespace TimeTrax
             btnSubmit.ValidationGroup = "ProjectBased";
             //RequiredFieldValidator3.Enabled = false;
             lblSubmitView2.Text = string.Empty;
+            Tab1.BorderColor = System.Drawing.Color.Gray;
+            Tab2.BorderColor = System.Drawing.Color.LightGray;
         }
 
         protected void Tab2_Click(object sender, EventArgs e)
@@ -267,6 +269,9 @@ namespace TimeTrax
             MainView.ActiveViewIndex = 1;
             btnSubmit.ValidationGroup = "Overhead";
             lblSubmitView2.Text = string.Empty;
+            Tab1.BorderColor = System.Drawing.Color.LightGray;
+            Tab2.BorderColor = System.Drawing.Color.Gray;
+
         }
 
         protected void cbPreProject_CheckedChanged(object sender, EventArgs e)
