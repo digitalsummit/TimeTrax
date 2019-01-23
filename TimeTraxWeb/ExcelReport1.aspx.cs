@@ -17,6 +17,11 @@ namespace TimeTrax
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if ((Session["UserLevel"].ToString() == "Manager") || (Session["UserLevel"].ToString() == "Finance"))
+                divAuthorized.Visible = true;
+            else
+                divNotAuthorized.Visible = true;
+
             if (!IsPostBack)
             {
                 FillDropDownList1();
@@ -64,6 +69,7 @@ namespace TimeTrax
                 DropDownList1.Items.Add(ds.Tables[0].Rows[i]["EmployeeName"].ToString());
             }
         }
+
         // DropDownList2
         protected void FillDropDownList2()
         {
@@ -76,11 +82,13 @@ namespace TimeTrax
         // ************************************************************************************
         protected void ExcelRpt1()
         {
-            DateTime beginDate = DateTime.Now.AddDays(-14);
-            DateTime endDate = DateTime.Now;
-            endDate = endDate.Date.AddDays(1);
+            DateTime beginDate;
+            DateTime endDate;
             Label1.Text = "Gathering the data...";
             DataSet ds = new DataSet();
+            beginDate = Convert.ToDateTime(txtDateBegin.Text);
+            endDate = Convert.ToDateTime(txtDateEnd.Text);
+            endDate = endDate.Date.AddDays(1);
             string employeeName = DropDownList1.SelectedItem.ToString();
             // *
             string approved = DropDownList2.SelectedValue;
@@ -101,12 +109,14 @@ namespace TimeTrax
                 cmd.Parameters.AddWithValue("@Employee", employeeName);
                 cmd.Parameters.AddWithValue("@Approved", approved);
                 cmd.Parameters.AddWithValue("@Flavor", flavor);
+                cmd.Parameters.AddWithValue("@beginDate", txtDateBegin.Text);
+                cmd.Parameters.AddWithValue("@endDate", txtDateEnd.Text);
                 cmd.Connection = conn;
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(ds);
                 conn.Close();
                 Label1.Text = "Exporting the file...";
-                ExportDataSetToExcel(ds, @"C:\inetpub\wwwroot\TimeTrax\LotNums.xls");
+                ExportDataSetToExcel(ds, @"C:\inetpub\wwwroot\TimeTrax\TimeTraxRpt.xls");
             }
             Label1.Text = "Finished";
         }

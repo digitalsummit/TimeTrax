@@ -13,20 +13,14 @@ namespace TimeTrax
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(!IsPostBack)
+            {
+                Session["sortExp"] = null;
+            }
 
-            //lblWelcome.Text = Session["EmployeeEmail"].ToString();
             lblWelcome.Text = HttpContext.Current.User.Identity.Name;
-
             GetEmployeeName();
             GridView1_GetData();
-            //GetTotalHours();
-            //DateTime mondayOfLastWeek = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek - 6);
-            //Label1.Text = "Monday Last Week " + mondayOfLastWeek.ToShortDateString();
-            //Label2.Text = "Monday of this week  " + DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek + 1).ToShortDateString();
-           // Label4.Text = "Sunday of this week " + DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek + 8 ).ToShortDateString();
-            
-            //Label5.Text = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek - 2).ToShortDateString();
-            //Label6.Text = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek - 1).ToShortDateString();
 
         }
 
