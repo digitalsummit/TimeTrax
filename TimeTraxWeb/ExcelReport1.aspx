@@ -13,10 +13,19 @@
     </div>
 
        <div class="form-group">
-        <asp:Label ID="Label6" CssClass="control-label col-sm-2" runat="server" Text="Project Cost Report (Excel)"></asp:Label><br />
               <div class="form-group" style="float:left">
+                  <asp:Table ID="Table1" runat="server">
+                      <asp:TableRow><asp:TableCell Width="15px"></asp:TableCell><asp:TableCell ColumnSpan="3"><asp:Label ID="Label6" CssClass="control-label" runat="server" Text="Project Cost Report (Excel)"></asp:Label></asp:TableCell></asp:TableRow>
+                      <asp:TableRow VerticalAlign="Middle" HorizontalAlign="Center"><asp:TableCell></asp:TableCell>
+                  <asp:TableCell><asp:ImageButton ID="btnPreviousWeek" ImageUrl="~/Images/leftArrow.png" runat="server" Height="30px" Width="30px" OnClick="btnPreviousWeek_Click" /></asp:TableCell>
+                          <asp:TableCell><asp:Label ID="Label7" runat="server" Text="Select Week"></asp:Label></asp:TableCell>
+                          <asp:TableCell><asp:ImageButton ID="btnNextWeek" ImageUrl="~/Images/RightArrow.png" runat="server" Height="30px" Width="30px" OnClick="btnNextWeek_Click" /></asp:TableCell>
+                      </asp:TableRow>
+                  </asp:Table>
+                  <br />
             <asp:Label for="txtDateBegin" CssClass="control-label col-sm-2" runat="server" Text="Beginning Date:"></asp:Label>
                 <asp:TextBox ID="txtDateBegin" runat="server" CssClass="form-control"></asp:TextBox>
+                  
             <asp:Label for="txtDateEnd" CssClass="control-label col-sm-2" runat="server" Text="Ending Date:"></asp:Label>
                 <asp:TextBox ID="txtDateEnd" runat="server" CssClass="form-control"></asp:TextBox>
             </div></div>

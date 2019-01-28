@@ -6,7 +6,14 @@
     </div>
     <div id="divAuthorized" runat="server" visible="false">
     <div class="form-group">
-        <asp:Label ID="Label1" CssClass="control-label col-sm-2" runat="server" Text="Project Cost Report (Excel)"></asp:Label><br />
+                 <asp:Table ID="Table1" runat="server">
+                      <asp:TableRow><asp:TableCell Width="5px"></asp:TableCell><asp:TableCell ColumnSpan="3"><asp:Label ID="Label1" CssClass="control-label col-sm-2" runat="server" Text="Project Cost Report (Excel)"></asp:Label></asp:TableCell></asp:TableRow>
+                      <asp:TableRow VerticalAlign="Middle" HorizontalAlign="Center"><asp:TableCell></asp:TableCell>
+                  <asp:TableCell><asp:ImageButton ID="btnPreviousWeek" ImageUrl="~/Images/leftArrow.png" runat="server" Height="30px" Width="30px" OnClick="btnPreviousWeek_Click" /></asp:TableCell>
+                          <asp:TableCell><asp:Label ID="Label7" runat="server" Text="Select Week"></asp:Label></asp:TableCell>
+                          <asp:TableCell><asp:ImageButton ID="btnNextWeek" ImageUrl="~/Images/RightArrow.png" runat="server" Height="30px" Width="30px" OnClick="btnNextWeek_Click" /></asp:TableCell>
+                      </asp:TableRow>
+                  </asp:Table>
               <div class="form-group" style="float:left">
             <asp:Label for="txtDateBegin" CssClass="control-label col-sm-2" runat="server" Text="Beginning Date:"></asp:Label>
                 <asp:TextBox ID="txtDateBegin" runat="server" CssClass="form-control"></asp:TextBox>

@@ -26,6 +26,7 @@ namespace TimeTrax
             {
                 FillDropDownList1();
                 //formatExcelFile();
+                setDefaultDates();
             }
         }
         protected void createExcelFile()
@@ -161,5 +162,44 @@ namespace TimeTrax
         //    Response.End();
 
         //}
+        protected void btnPreviousWeek_Click(object sender, ImageClickEventArgs e)
+        {
+            try
+            {
+                DateTime beginDate = Convert.ToDateTime(txtDateBegin.Text);
+                beginDate = beginDate.AddDays(-7);
+                txtDateBegin.Text = beginDate.ToShortDateString();
+                txtDateEnd.Text = beginDate.AddDays(6).ToShortDateString();
+            }
+            catch
+            {
+                setDefaultDates();
+            }
+
+        }
+
+        protected void btnNextWeek_Click(object sender, ImageClickEventArgs e)
+        {
+            try
+            {
+                DateTime beginDate = Convert.ToDateTime(txtDateBegin.Text);
+                beginDate = beginDate.AddDays(7);
+                txtDateBegin.Text = beginDate.ToShortDateString();
+                txtDateEnd.Text = beginDate.AddDays(6).ToShortDateString();
+            }
+            catch
+            {
+                setDefaultDates();
+            }
+
+        }
+        protected void setDefaultDates()
+        {
+            int currentDayOfWeek = (int)DateTime.Now.DayOfWeek;
+            DateTime endingDate = DateTime.Now.AddDays(-currentDayOfWeek);
+            txtDateBegin.Text = endingDate.AddDays(-6).ToShortDateString();
+            txtDateEnd.Text = endingDate.ToShortDateString();
+        }
+
     }
 }

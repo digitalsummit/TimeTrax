@@ -27,6 +27,9 @@ namespace TimeTrax
                 FillDropDownList1();
                 FillDropDownList2();
                 cbByProject.Checked = true;
+                setDefaultDates();
+
+
             }
         }
 
@@ -169,6 +172,37 @@ namespace TimeTrax
         {
             cbByEmployee.Checked = false;
             cbByProject.Checked = false;
+        }
+
+        protected void btnPreviousWeek_Click(object sender, ImageClickEventArgs e)
+        {
+            try
+            {
+                DateTime beginDate = Convert.ToDateTime(txtDateBegin.Text);
+                beginDate = beginDate.AddDays(-7);
+                txtDateBegin.Text = beginDate.ToShortDateString();
+                txtDateEnd.Text = beginDate.AddDays(6).ToShortDateString();
+            }
+            catch
+            { }
+
+        }
+
+        protected void btnNextWeek_Click(object sender, ImageClickEventArgs e)
+        {
+            DateTime beginDate = Convert.ToDateTime(txtDateBegin.Text);
+            beginDate = beginDate.AddDays(7);
+            txtDateBegin.Text = beginDate.ToShortDateString();
+            txtDateEnd.Text = beginDate.AddDays(6).ToShortDateString();
+
+        }
+
+        protected void setDefaultDates()
+        {
+            int currentDayOfWeek = (int)DateTime.Now.DayOfWeek;
+            DateTime endingDate = DateTime.Now.AddDays(-currentDayOfWeek);
+            txtDateBegin.Text = endingDate.AddDays(-6).ToShortDateString();
+            txtDateEnd.Text = endingDate.ToShortDateString();
         }
     }
 }

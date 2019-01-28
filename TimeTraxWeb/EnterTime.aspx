@@ -158,7 +158,7 @@
                     </asp:TableRow>
                     <asp:TableRow Height="150px" CssClass="tableRowLarge">
                         <asp:TableCell Width="100%">
-                            <asp:CheckBox ID="cbPreProject" runat="server" Text="Preproject / BD / Prospecting" CssClass="CheckboxWide" AutoPostBack="true" OnCheckedChanged="cbPreProject_CheckedChanged" />
+                            <asp:CheckBox ID="cbPreProject" runat="server" Text="Preproject / BD / Prospecting / Team Meeting" CssClass="CheckboxWide" AutoPostBack="true" OnCheckedChanged="cbPreProject_CheckedChanged" />
                         </asp:TableCell>
                     </asp:TableRow>
                     <asp:TableRow>

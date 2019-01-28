@@ -203,6 +203,8 @@
     <Content Include="Content\bootstrap-datepicker3.css.map" />
     <Content Include="Content\bootstrap-datepicker.standalone.css.map" />
     <Content Include="Content\bootstrap-datepicker.css.map" />
+    <Content Include="Images\leftArrow.png" />
+    <Content Include="Images\RightArrow.png" />
     <Content Include="Service References\EmWebService1\TimeTrax.EmWebService1.GetProjectTitleResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
