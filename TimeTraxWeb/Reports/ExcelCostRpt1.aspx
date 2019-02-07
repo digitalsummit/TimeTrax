@@ -7,7 +7,7 @@
     <div id="divAuthorized" runat="server" visible="false">
     <div class="form-group">
                  <asp:Table ID="Table1" runat="server">
-                      <asp:TableRow><asp:TableCell Width="5px"></asp:TableCell><asp:TableCell ColumnSpan="3"><asp:Label ID="Label1" CssClass="control-label col-sm-2" runat="server" Text="Project Cost Report (Excel)"></asp:Label></asp:TableCell></asp:TableRow>
+                      <asp:TableRow><asp:TableCell Width="5px"></asp:TableCell><asp:TableCell ColumnSpan="3"><asp:Label ID="Label1" CssClass="control-label col-sm-2" runat="server" Text="Manager Project Cost (Excel)" Width="160"></asp:Label></asp:TableCell></asp:TableRow>
                       <asp:TableRow VerticalAlign="Middle" HorizontalAlign="Center"><asp:TableCell></asp:TableCell>
                   <asp:TableCell><asp:ImageButton ID="btnPreviousWeek" ImageUrl="~/Images/leftArrow.png" runat="server" Height="30px" Width="30px" OnClick="btnPreviousWeek_Click" /></asp:TableCell>
                           <asp:TableCell><asp:Label ID="Label7" runat="server" Text="Select Week"></asp:Label></asp:TableCell>
@@ -23,10 +23,11 @@
 
     <div class="form-group">
              <div class="col-sm-10">
-            <asp:DropDownList ID="DropDownList1" CssClass="form-control" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged"></asp:DropDownList>
+                 <asp:Label ID="lblWarningSelectManager" runat="server" Text="Please Select a Manager from the drop down list." ForeColor="Red" Visible="false"></asp:Label>
+            <asp:DropDownList ID="DropDownList1" CssClass="form-control" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
         </div>
         </div>
-
+        <asp:GridView ID="GridView1" runat="server"></asp:GridView>
 
     
     <div class="form-group">

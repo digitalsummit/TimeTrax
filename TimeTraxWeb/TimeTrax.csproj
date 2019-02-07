@@ -192,8 +192,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="EnterTime.aspx" />
-    <Content Include="ExcelCostRpt1.aspx" />
-    <Content Include="ExcelReport1.aspx" />
+    <Content Include="Reports\ExcelCostRpt1.aspx" />
+    <Content Include="Reports\ExcelReport1.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -503,18 +503,18 @@
     <Compile Include="EnterTime.aspx.designer.cs">
       <DependentUpon>EnterTime.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ExcelCostRpt1.aspx.cs">
+    <Compile Include="Reports\ExcelCostRpt1.aspx.cs">
       <DependentUpon>ExcelCostRpt1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ExcelCostRpt1.aspx.designer.cs">
+    <Compile Include="Reports\ExcelCostRpt1.aspx.designer.cs">
       <DependentUpon>ExcelCostRpt1.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ExcelReport1.aspx.cs">
+    <Compile Include="Reports\ExcelReport1.aspx.cs">
       <DependentUpon>ExcelReport1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ExcelReport1.aspx.designer.cs">
+    <Compile Include="Reports\ExcelReport1.aspx.designer.cs">
       <DependentUpon>ExcelReport1.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -588,7 +588,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Reports\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

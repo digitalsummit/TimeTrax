@@ -18,17 +18,17 @@
     <add name="TimeTraxConnectionString" connectionString="Data Source=TOBEY-ASUS;Initial Catalog=TimeTrax;User ID=svc_TimeTrax;Password=f!fE2)4F)HU" providerName="System.Data.SqlClient"/>-->
     
     <!--Production Connection-->
-    <!--<add name="DefaultConnection" connectionString="Data Source=SERVER5;Initial Catalog=TimeTrax; Connection Timeout=60;User ID=TimeTrax;Password=TimeTraxImprove05" providerName="System.Data.SqlClient" />
-    <add name="TimeTraxConnectionString" connectionString="Data Source=SERVER5;Initial Catalog=TimeTrax; Connection Timeout=60;User ID=TimeTrax;Password=TimeTraxImprove05" providerName="System.Data.SqlClient" />-->
+    <add name="DefaultConnection" connectionString="Data Source=SERVER5;Initial Catalog=TimeTrax; Connection Timeout=60;User ID=TimeTrax;Password=TimeTraxImprove05" providerName="System.Data.SqlClient" />
+    <add name="TimeTraxConnectionString" connectionString="Data Source=SERVER5;Initial Catalog=TimeTrax; Connection Timeout=60;User ID=TimeTrax;Password=TimeTraxImprove05" providerName="System.Data.SqlClient" />
 
     <!--Dev-Production Type on Dev machine Connection-->
     <!--<add name="DefaultConnection" connectionString="Data Source=TOBEY-ASUS;Initial Catalog=TimeTrax; Connection Timeout=60;User ID=svc_TimeTrax;Password=f!fE2)4F)HU" providerName="System.Data.SqlClient" />
     <add name="TimeTraxConnectionString" connectionString="Data Source=TOBEY-ASUS;Initial Catalog=TimeTrax; Connection Timeout=60;User ID=svc_TimeTrax;Password=f!fE2)4F)HU" providerName="System.Data.SqlClient" />-->
 
 
-    <!--Dev Connection ON SERVER5-->
-    <add name="DefaultConnection" connectionString="Data Source=SERVER5;Initial Catalog=TimeTraxDev; Connection Timeout=60;User ID=TimeTrax;Password=TimeTraxImprove05" providerName="System.Data.SqlClient" />
-    <add name="TimeTraxConnectionString" connectionString="Data Source=SERVER5;Initial Catalog=TimeTraxDev; Connection Timeout=60;User ID=TimeTrax;Password=TimeTraxImprove05" providerName="System.Data.SqlClient" />
+    <!--Dev Connection-->
+    <!--<add name="DefaultConnection" connectionString="Data Source=SERVER5;Initial Catalog=TimeTraxDev; Connection Timeout=60;User ID=TimeTrax;Password=TimeTraxImprove05" providerName="System.Data.SqlClient" />
+    <add name="TimeTraxConnectionString" connectionString="Data Source=SERVER5;Initial Catalog=TimeTraxDev; Connection Timeout=60;User ID=TimeTrax;Password=TimeTraxImprove05" providerName="System.Data.SqlClient" />-->
 
     
   </connectionStrings>

@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Web;
 using System.Web.UI.WebControls;
 
@@ -16,6 +17,9 @@ namespace TimeTrax
             if(!IsPostBack)
             {
                 Session["sortExp"] = null;
+                Session["flavor"] = "All";
+                setDefaultDates();
+                RadioButtonList1.SelectedValue = "Unapproved";
             }
 
             lblWelcome.Text = HttpContext.Current.User.Identity.Name;
@@ -35,6 +39,7 @@ namespace TimeTrax
             
             DataSet ds = new DataSet();
             string sqlCmdText = string.Empty;
+            string flavor = Session["flavor"].ToString();
             sqlCmdText = "GetMyCurrentTimeSheetTotal";
             SqlConnection conn = new SqlConnection(Convert.ToString(ConfigurationManager.ConnectionStrings["TimeTraxConnectionString"]));
             using (conn)
@@ -44,6 +49,9 @@ namespace TimeTrax
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = sqlCmdText;
                 cmd.Parameters.AddWithValue("@Employee", lblWelcome.Text);
+                cmd.Parameters.AddWithValue("@beginDate", txtDateBegin.Text);
+                cmd.Parameters.AddWithValue("@endDate", txtDateEnd.Text);
+                cmd.Parameters.AddWithValue("@flavor", flavor);  // Unapproved, Approved, All
                 cmd.Connection = conn;
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(ds);
@@ -118,7 +126,8 @@ namespace TimeTrax
 
         protected void GridView1_GetData()
         {
-
+            string flavor = string.Empty;
+            flavor = RadioButtonList1.SelectedValue.ToString();
             string sortExp = string.Empty;
             // if (Session["LoggedIn"]) !=null)
             if (Session["sortExp"] != null)
@@ -130,6 +139,7 @@ namespace TimeTrax
             {
                 Session["sortExp"] = "ID";
             }
+
 
             string employeeName = lblWelcome.Text;
             string sqlCmdText = string.Empty;
@@ -143,14 +153,45 @@ namespace TimeTrax
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = sqlCmdText;
                 cmd.Parameters.AddWithValue("@Employee", employeeName);
-                cmd.Parameters.AddWithValue("@Approved", "Not Approved");
+                cmd.Parameters.AddWithValue("@Approved", flavor);
+                cmd.Parameters.AddWithValue("@beginDate", txtDateBegin.Text);
+                cmd.Parameters.AddWithValue("@endDate", txtDateEnd.Text);
                 cmd.Connection = conn;
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(ds);
                 conn.Close();
 
             }
-            DataTable dt = ds.Tables[0];
+
+            DataTable dt = new DataTable();
+            if (ds.Tables.Count != 0)
+            { 
+                dt = ds.Tables[0];
+            }
+            else
+            {
+                dt.Columns.Add(new DataColumn("ID", typeof(string)));
+                dt.Columns.Add(new DataColumn("ProjectNumber", typeof(string)));
+                dt.Columns.Add(new DataColumn("ProjectName", typeof(string)));
+                dt.Columns.Add(new DataColumn("DateWorked", typeof(string)));
+                dt.Columns.Add(new DataColumn("Day", typeof(string)));
+                dt.Columns.Add(new DataColumn("Employee", typeof(string)));
+                dt.Columns.Add(new DataColumn("Hours", typeof(string)));
+                dt.Columns.Add(new DataColumn("DriveTime", typeof(string)));
+                dt.Columns.Add(new DataColumn("PreProject", typeof(string)));
+                dt.Columns.Add(new DataColumn("CorporateEvents", typeof(string)));
+                dt.Columns.Add(new DataColumn("training", typeof(string)));
+                dt.Columns.Add(new DataColumn("PTO", typeof(string)));
+                dt.Columns.Add(new DataColumn("Holiday", typeof(string)));
+                dt.Columns.Add(new DataColumn("WageScale", typeof(string)));
+                dt.Columns.Add(new DataColumn("Other", typeof(string)));
+                dt.Columns.Add(new DataColumn("Notes", typeof(string)));
+
+                DataRow dr = dt.NewRow();
+                dr["ProjectName"] = "No data selected";
+                dt.Rows.Add(dr);
+                ds.Tables.Add(dt);
+            }
 
             DataView dv = dt.DefaultView;
             dv.Sort = sortExp;
@@ -269,6 +310,70 @@ namespace TimeTrax
                 GridView1.DataSource = sortedDT;
                 GridView1.DataBind();
             }
+        }
+
+        protected void btnPreviousWeek_Click(object sender, System.Web.UI.ImageClickEventArgs e)
+        {
+            DateTime beginDateValue = DateTime.Now;
+            string s = txtDateBegin.Text;
+            if (DateTime.TryParse(txtDateBegin.Text, out beginDateValue))
+            {
+                // do for valid date
+                int currentDayOfWeek = (int)beginDateValue.DayOfWeek;
+                DateTime endingDate = beginDateValue.AddDays(-currentDayOfWeek);
+                txtDateBegin.Text = endingDate.AddDays(-6).ToShortDateString();
+                txtDateEnd.Text = endingDate.ToShortDateString();
+                GridView1_GetData();
+            }
+            else
+            {
+                // do for invalid date
+                int currentDayOfWeek = (int)DateTime.Now.DayOfWeek;
+                DateTime endingDate = DateTime.Now.AddDays(-currentDayOfWeek);
+                txtDateBegin.Text = endingDate.AddDays(-6).ToShortDateString();
+                txtDateEnd.Text = endingDate.ToShortDateString();
+                GridView1_GetData();
+            }
+
+           
+        }
+
+        protected void btnNextWeek_Click(object sender, System.Web.UI.ImageClickEventArgs e)
+        {
+            DateTime beginDateValue = DateTime.Now;
+            string s = txtDateBegin.Text;
+            if(DateTime.TryParse(txtDateBegin.Text,out beginDateValue))
+            {
+                // do for valid date
+                DateTime beginDate = Convert.ToDateTime(txtDateBegin.Text);
+                beginDate = beginDate.AddDays(7);
+                txtDateBegin.Text = beginDate.ToShortDateString();
+                txtDateEnd.Text = beginDate.AddDays(6).ToShortDateString();
+                GridView1_GetData();
+            }
+            else
+            {
+                // do for invalid date
+                DateTime beginDate = Convert.ToDateTime(txtDateBegin.Text);
+                beginDate = beginDate.AddDays(7);
+                txtDateBegin.Text = beginDate.ToShortDateString();
+                txtDateEnd.Text = beginDate.AddDays(6).ToShortDateString();
+                GridView1_GetData();
+            }
+       
+        }
+
+        protected void setDefaultDates()
+        {
+            int currentDayOfWeek = (int)DateTime.Now.DayOfWeek;
+            DateTime endingDate = DateTime.Now.AddDays(-currentDayOfWeek);
+            txtDateBegin.Text = endingDate.AddDays(-6).ToShortDateString();
+            txtDateEnd.Text = endingDate.ToShortDateString();
+        }
+
+        protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GridView1_GetData();
         }
     }
 }

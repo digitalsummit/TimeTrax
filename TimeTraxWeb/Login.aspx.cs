@@ -14,7 +14,8 @@ namespace TimeTrax
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Response.Redirect(@"~\Account\Login.aspx", true);
+            // https://stackoverflow.com/questions/31221/response-redirect-using-path
         }
 
         protected void btnRegister_Click(object sender, EventArgs e)

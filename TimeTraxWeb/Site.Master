@@ -55,8 +55,8 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reports</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="ExcelReport1.aspx">TimeSheet Reports</a><BR> 
-                    <a class="dropdown-item" href="ExcelCostRpt1.aspx">Cost Reports</a>
+                    <a class="dropdown-item" runat="server" href="~/Reports/ExcelReport1.aspx">TimeSheet Report</a><BR> 
+                    <a class="dropdown-item" runat="server" href="~/Reports/ExcelCostRpt1.aspx">Cost Reports</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Future Report</a>
                     </div></li>
