@@ -49,6 +49,9 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EPPlus">
+      <HintPath>Nuget\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.TelemetryCorrelation, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.5\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
     </Reference>
@@ -192,8 +195,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="EnterTime.aspx" />
-    <Content Include="Reports\ExcelCostRpt1.aspx" />
-    <Content Include="Reports\ExcelReport1.aspx" />
+    <Content Include="FAQ.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -205,9 +207,13 @@
     <Content Include="Content\bootstrap-datepicker.css.map" />
     <Content Include="Images\leftArrow.png" />
     <Content Include="Images\RightArrow.png" />
+    <Content Include="Reports\MgrCostRpt.aspx" />
+    <Content Include="Reports\ProjectTimeCost.aspx" />
+    <Content Include="Reports\TimeSheetRpt.aspx" />
     <Content Include="Service References\EmWebService1\TimeTrax.EmWebService1.GetProjectTitleResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="epplus.4.5.3.1.nupkg" />
     <None Include="Service References\EmWebService1\WebService1.disco" />
     <None Include="Service References\EmWebService1\configuration91.svcinfo" />
     <None Include="Service References\EmWebService1\configuration.svcinfo" />
@@ -503,19 +509,12 @@
     <Compile Include="EnterTime.aspx.designer.cs">
       <DependentUpon>EnterTime.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Reports\ExcelCostRpt1.aspx.cs">
-      <DependentUpon>ExcelCostRpt1.aspx</DependentUpon>
+    <Compile Include="FAQ.aspx.cs">
+      <DependentUpon>FAQ.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Reports\ExcelCostRpt1.aspx.designer.cs">
-      <DependentUpon>ExcelCostRpt1.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\ExcelReport1.aspx.cs">
-      <DependentUpon>ExcelReport1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\ExcelReport1.aspx.designer.cs">
-      <DependentUpon>ExcelReport1.aspx</DependentUpon>
+    <Compile Include="FAQ.aspx.designer.cs">
+      <DependentUpon>FAQ.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -543,6 +542,27 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\MgrCostRpt.aspx.cs">
+      <DependentUpon>MgrCostRpt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\MgrCostRpt.aspx.designer.cs">
+      <DependentUpon>MgrCostRpt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ProjectTimeCost.aspx.cs">
+      <DependentUpon>ProjectTimeCost.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\ProjectTimeCost.aspx.designer.cs">
+      <DependentUpon>ProjectTimeCost.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\TimeSheetRpt.aspx.cs">
+      <DependentUpon>TimeSheetRpt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\TimeSheetRpt.aspx.designer.cs">
+      <DependentUpon>TimeSheetRpt.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ReviewCurrentTime.aspx.cs">
       <DependentUpon>ReviewCurrentTime.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -588,6 +608,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ReportOutput\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

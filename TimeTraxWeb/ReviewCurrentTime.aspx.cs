@@ -19,7 +19,7 @@ namespace TimeTrax
                 Session["sortExp"] = null;
                 Session["flavor"] = "All";
                 setDefaultDates();
-                RadioButtonList1.SelectedValue = "Unapproved";
+                RadioButtonList1.SelectedValue = "All";
             }
 
             lblWelcome.Text = HttpContext.Current.User.Identity.Name;
@@ -58,10 +58,10 @@ namespace TimeTrax
                 conn.Close();
 
             }
-            lblSumHours.Text = "Total shown: " + ds.Tables[0].Rows[0]["SumHours"].ToString();
-            lblSumLastWeek.Text = " Last Week:" +  ds.Tables[0].Rows[0]["SumLastWeek"].ToString();
-            lblSumThisWeek.Text = " This Week:" + ds.Tables[0].Rows[0]["SumThisWeek"].ToString();
-            lblSumNextWeek.Text = " Next Week:" + ds.Tables[0].Rows[0]["SumNextWeek"].ToString();
+            //lblSumHours.Text = "Total shown: " + ds.Tables[0].Rows[0]["SumHours"].ToString();
+            lblSumLastWeek.Text = " Previous Week:" +  ds.Tables[0].Rows[0]["SumLastWeek"].ToString();
+            lblSumThisWeek.Text = " Shown Week:" + ds.Tables[0].Rows[0]["SumThisWeek"].ToString();
+            lblSumNextWeek.Text = " Following Week:" + ds.Tables[0].Rows[0]["SumNextWeek"].ToString();
 
             lblSumCurrentMonday.Text = " Mon: " + ds.Tables[0].Rows[0]["SumCurrentMonday"].ToString();
             lblSumCurrentTuesday.Text = " Tues: " + ds.Tables[0].Rows[0]["SumCurrentTuesday"].ToString();
@@ -221,7 +221,8 @@ namespace TimeTrax
             string SortDirection = GridView1.SortDirection.ToString();
             string sqlCmdText = string.Empty;
             DataSet ds = new DataSet();
-            sqlCmdText = "UpdateMyTimeSheetSubstractHalfHour";
+            //sqlCmdText = "UpdateMyTimeSheetSubstractHalfHour";
+            sqlCmdText = "UpdateMyTimeSheetSubstractHour";
             SqlConnection conn = new SqlConnection(Convert.ToString(ConfigurationManager.ConnectionStrings["TimeTraxConnectionString"]));
             using (conn)
             {
@@ -247,7 +248,8 @@ namespace TimeTrax
             string SortDirection = GridView1.SortDirection.ToString();
             string sqlCmdText = string.Empty;
             DataSet ds = new DataSet();
-            sqlCmdText = "UpdateMyTimeSheetAddHalfHour";
+            // sqlCmdText = "UpdateMyTimeSheetAddHalfHour";
+            sqlCmdText = "UpdateMyTimeSheetAddHour";
             SqlConnection conn = new SqlConnection(Convert.ToString(ConfigurationManager.ConnectionStrings["TimeTraxConnectionString"]));
             using (conn)
             {
@@ -365,15 +367,83 @@ namespace TimeTrax
 
         protected void setDefaultDates()
         {
+            //int currentDayOfWeek = (int)DateTime.Now.DayOfWeek;
+            //DateTime endingDate = DateTime.Now.AddDays(-currentDayOfWeek);
+            //txtDateBegin.Text = endingDate.AddDays(-6).ToShortDateString();
+            //txtDateEnd.Text = endingDate.ToShortDateString();
+
             int currentDayOfWeek = (int)DateTime.Now.DayOfWeek;
-            DateTime endingDate = DateTime.Now.AddDays(-currentDayOfWeek);
+            int daysToAddForEndDate = (7 - currentDayOfWeek);
+            DateTime endingDate = DateTime.Now.AddDays(daysToAddForEndDate);
             txtDateBegin.Text = endingDate.AddDays(-6).ToShortDateString();
             txtDateEnd.Text = endingDate.ToShortDateString();
+
         }
 
         protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
         {
             GridView1_GetData();
         }
+
+        protected void btnSubtractDay_Command(object sender, CommandEventArgs e)
+        {
+            int id = int.Parse(e.CommandArgument.ToString());
+            GridView1.EnableViewState = true;
+
+            string SortDirection = GridView1.SortDirection.ToString();
+            string sqlCmdText = string.Empty;
+            DataSet ds = new DataSet();
+            //sqlCmdText = "UpdateMyTimeSheetSubstractHalfHour";
+            sqlCmdText = "UpdateMyTimesheetSubtractDay";
+            SqlConnection conn = new SqlConnection(Convert.ToString(ConfigurationManager.ConnectionStrings["TimeTraxConnectionString"]));
+            using (conn)
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = sqlCmdText;
+                cmd.Parameters.AddWithValue("@ID", id);
+                cmd.Parameters.AddWithValue("@beginDate", txtDateBegin.Text);
+                cmd.Parameters.AddWithValue("@endDate", txtDateEnd.Text);
+                cmd.Connection = conn;
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(ds);
+                conn.Close();
+
+            }
+            GridView1_GetData();
+
+        }
+
+        protected void btnAddDay_Command(object sender, CommandEventArgs e)
+        {
+            int id = int.Parse(e.CommandArgument.ToString());
+            GridView1.EnableViewState = true;
+
+            string SortDirection = GridView1.SortDirection.ToString();
+            string sqlCmdText = string.Empty;
+            DataSet ds = new DataSet();
+            //sqlCmdText = "UpdateMyTimeSheetSubstractHalfHour";
+            sqlCmdText = "UpdateMyTimesheetAddDay";
+            SqlConnection conn = new SqlConnection(Convert.ToString(ConfigurationManager.ConnectionStrings["TimeTraxConnectionString"]));
+            using (conn)
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = sqlCmdText;
+                cmd.Parameters.AddWithValue("@ID", id);
+                cmd.Parameters.AddWithValue("@beginDate", txtDateBegin.Text);
+                cmd.Parameters.AddWithValue("@endDate", txtDateEnd.Text);
+                cmd.Connection = conn;
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(ds);
+                conn.Close();
+
+            }
+            GridView1_GetData();
+
+        }
+
     }
 }

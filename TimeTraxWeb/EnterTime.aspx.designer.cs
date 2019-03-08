@@ -22,6 +22,15 @@ namespace TimeTrax {
         protected global::System.Web.UI.WebControls.Label lblWelcome;
         
         /// <summary>
+        /// Table2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table Table2;
+        
+        /// <summary>
         /// txtDateWorked control.
         /// </summary>
         /// <remarks>
@@ -31,13 +40,22 @@ namespace TimeTrax {
         protected global::System.Web.UI.WebControls.TextBox txtDateWorked;
         
         /// <summary>
-        /// Label3 control.
+        /// txtHoursAndMinutes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.TextBox txtHoursAndMinutes;
+        
+        /// <summary>
+        /// lblHoursWorked control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHoursWorked;
         
         /// <summary>
         /// ddlHours control.
@@ -49,13 +67,22 @@ namespace TimeTrax {
         protected global::System.Web.UI.WebControls.DropDownList ddlHours;
         
         /// <summary>
-        /// Label2 control.
+        /// ddlMinutes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMinutes;
+        
+        /// <summary>
+        /// lblTravelTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTravelTime;
         
         /// <summary>
         /// cbTravelTime control.
@@ -67,13 +94,13 @@ namespace TimeTrax {
         protected global::System.Web.UI.WebControls.CheckBox cbTravelTime;
         
         /// <summary>
-        /// Label1 control.
+        /// lblWageScale control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lblWageScale;
         
         /// <summary>
         /// cbWageScale control.
@@ -166,15 +193,6 @@ namespace TimeTrax {
         protected global::System.Web.UI.WebControls.TextBox txtProjectNumber;
         
         /// <summary>
-        /// Table1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table Table1;
-        
-        /// <summary>
         /// btnGetProjectName control.
         /// </summary>
         /// <remarks>
@@ -184,6 +202,15 @@ namespace TimeTrax {
         protected global::System.Web.UI.WebControls.Button btnGetProjectName;
         
         /// <summary>
+        /// Table1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table Table1;
+        
+        /// <summary>
         /// txtProjectName control.
         /// </summary>
         /// <remarks>
@@ -191,6 +218,15 @@ namespace TimeTrax {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtProjectName;
+        
+        /// <summary>
+        /// cbShareAcross control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbShareAcross;
         
         /// <summary>
         /// cbPreProject control.
@@ -283,6 +319,15 @@ namespace TimeTrax {
         protected global::System.Web.UI.WebControls.Table tblButtons;
         
         /// <summary>
+        /// btnSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSubmit;
+        
+        /// <summary>
         /// RequiredFieldValidator1 control.
         /// </summary>
         /// <remarks>
@@ -308,15 +353,6 @@ namespace TimeTrax {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CompareValidator CompareValidator1;
-        
-        /// <summary>
-        /// btnSubmit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
         
         /// <summary>
         /// lblSubmitView2 control.

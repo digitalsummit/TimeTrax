@@ -23,7 +23,7 @@
             </asp:TableRow>
             </asp:Table>
             <div style="float:right">
-            <asp:Button ID="btnApproveAll" runat="server" Text="Approve All" CssClass="submitButton" Visible="false" BorderColor="Black" BackColor="LightGray" BorderWidth="2px" BorderStyle="Groove"  OnClick="btnApproveAll_Click" /><p></p>
+            <asp:Button ID="btnApproveAll" runat="server" Text="Approve All" CssClass="submitButton" Visible="false" BorderColor="Black" BackColor="LightGray" ForeColor="Blue" BorderWidth="2px" BorderStyle="Groove"  OnClick="btnApproveAll_Click" /><p></p>
                 </div>
 
         <asp:GridView ID="GridView1" runat="server" AllowPaging="False" AllowSorting="True" AutoGenerateColumns="False" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" DataKeyNames="ID" OnRowDataBound="GridView1_RowDataBound" ForeColor="Black" GridLines="None" AutoGenerateEditButton="false" OnRowCommand="GridView1_RowCommand" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnSorting="GridView1_Sorting" >
@@ -40,11 +40,11 @@
                 <asp:BoundField DataField="PTO" HeaderText="PTO" SortExpression="PTO" />
                 <asp:BoundField DataField="Holiday" HeaderText="Holiday" SortExpression="Holiday" />
                 <asp:BoundField DataField="WageScale" HeaderText="WageScale" SortExpression="WageScale" />
-                <asp:BoundField DataField="DriveTime" HeaderText="DriveTime" SortExpression="DriveTime" />
-                <asp:BoundField DataField="Other" HeaderText="Other" SortExpression="Other" />
+                <asp:BoundField DataField="DriveTime" HeaderText="Travel" SortExpression="DriveTime" />
+                <%--<asp:BoundField DataField="Other" HeaderText="Other" SortExpression="Other" />--%>
                 <asp:BoundField DataField="Notes" HeaderText="Notes" SortExpression="Notes" ItemStyle-Width="300px" />
                 <asp:BoundField DataField="Approved" HeaderText="Approved" SortExpression="Approved" />
-                <asp:CommandField ShowSelectButton="True" SelectText="Approve"/>
+                <asp:CommandField ShowSelectButton="True" SelectText="Approve" ControlStyle-ForeColor="blue"/>
             </Columns>
             <EmptyDataTemplate>
                 No records selected

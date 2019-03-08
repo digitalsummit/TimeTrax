@@ -387,3 +387,10 @@ border-radius: 10px;
     margin-bottom:53px;
     transform:scale(7);
 }
+    .rightAlign td {
+        text-align: right;
+    }
+    .mycheckbox input[type="checkbox"] 
+{ 
+    margin-right: 7px; 
+}

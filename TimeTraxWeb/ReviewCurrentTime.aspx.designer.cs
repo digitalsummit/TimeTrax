@@ -58,15 +58,6 @@ namespace TimeTrax {
         protected global::System.Web.UI.WebControls.Label lblSumLastWeek;
         
         /// <summary>
-        /// lblSumNextWeek control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSumNextWeek;
-        
-        /// <summary>
         /// lblSumThisWeek control.
         /// </summary>
         /// <remarks>
@@ -74,6 +65,15 @@ namespace TimeTrax {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblSumThisWeek;
+        
+        /// <summary>
+        /// lblSumNextWeek control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSumNextWeek;
         
         /// <summary>
         /// Label6 control.

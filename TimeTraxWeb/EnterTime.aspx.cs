@@ -29,6 +29,22 @@ namespace TimeTrax
                 RequiredFieldValidator1.Enabled = false;
                 RequiredFieldValidator2.Enabled = true;
                 //cbWageScale.Visible = false;
+                txtHoursAndMinutes.Text = "0.00";
+                string employee = string.Empty;
+                employee = Session["EmployeeName"].ToString();
+                if (CheckEmployeeRole(employee,"TravelTime") == "Yes")
+                {
+                    lblTravelTime.Visible = true;
+                    cbTravelTime.Visible = true;
+
+                }
+                if (CheckEmployeeRole(employee, "WageScale") == "Yes")
+                {
+                    lblWageScale.Visible = true;
+                    cbWageScale.Visible = true;
+
+                }
+
             }
         }
 
@@ -88,35 +104,38 @@ namespace TimeTrax
         protected void ddlHoursAddTimes()
         {
             ddlHours.Items.Insert(0, new ListItem("12", "12"));
-            ddlHours.Items.Insert(0, new ListItem("11.5", "11.5"));
             ddlHours.Items.Insert(0, new ListItem("11", "11"));
-            ddlHours.Items.Insert(0, new ListItem("10.5", "10.5"));
             ddlHours.Items.Insert(0, new ListItem("10", "10"));
-            ddlHours.Items.Insert(0, new ListItem("9.5", "9.5"));
             ddlHours.Items.Insert(0, new ListItem("9", "9"));
-            ddlHours.Items.Insert(0, new ListItem("8.5", "8.5"));
             ddlHours.Items.Insert(0, new ListItem("8", "8"));
-            ddlHours.Items.Insert(0, new ListItem("7.5", "7.5"));
             ddlHours.Items.Insert(0, new ListItem("7", "7"));
-            ddlHours.Items.Insert(0, new ListItem("6.5", "6.5"));
             ddlHours.Items.Insert(0, new ListItem("6", "6"));
-            ddlHours.Items.Insert(0, new ListItem("5.5", "5.5"));
             ddlHours.Items.Insert(0, new ListItem("5", "5"));
-            ddlHours.Items.Insert(0, new ListItem("4.5", "4.5"));
             ddlHours.Items.Insert(0, new ListItem("4", "4"));
-            ddlHours.Items.Insert(0, new ListItem("3.5", "3.5"));
             ddlHours.Items.Insert(0, new ListItem("3", "3"));
-            ddlHours.Items.Insert(0, new ListItem("2.5", "2.5"));
             ddlHours.Items.Insert(0, new ListItem("2", "2"));
-            ddlHours.Items.Insert(0, new ListItem("1.5", "1.5"));
             ddlHours.Items.Insert(0, new ListItem("1", "1"));
-            ddlHours.Items.Insert(0, new ListItem(".5", ".5"));
             ddlHours.Items.Insert(0, new ListItem("0", "0"));
+            ddlMinutes.Items.Insert(0, new ListItem("45", "45"));
+            ddlMinutes.Items.Insert(0, new ListItem("30", "30"));
+            ddlMinutes.Items.Insert(0, new ListItem("15", "15"));
+            ddlMinutes.Items.Insert(0, new ListItem("00", "00"));
 
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            if(!Page.IsValid)
+            {
+                return;
+            }
+
+            if(ddlHours.SelectedValue == "0")
+            {
+                lblHoursWorked.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+
             if (SubmitTimeRecord() != "Success")
             {
                 //lblSubmitView1.Text = "Error. Review and retry";
@@ -137,6 +156,7 @@ namespace TimeTrax
                 txtPreProjectNotes.Visible = false;
                 //lblcharCountOutput.Visible = false;
                 MainView.SetActiveView(View1);
+                lblHoursWorked.ForeColor = System.Drawing.Color.Black;
                 lblSubmitView2.Text = "Saved. Ready for more.";
 
             }
@@ -148,6 +168,7 @@ namespace TimeTrax
             string employeeName = lblWelcome.Text.Replace("Submit time for: ", "");
             //int projectChecked = (rbProjectNumber.Checked == true) ? 1 : 0;
             int projectChecked = (cbProjectNumber.Checked == true) ? 1 : 0;
+            int hours = Convert.ToInt16(ddlHours.SelectedValue.ToString());
             if (txtProjectNumber.Text.Length > 4)
             {
                 projectChecked = 1;
@@ -157,18 +178,15 @@ namespace TimeTrax
             }
 
             int preProject = (cbPreProject.Checked == true) ? 1 : 0;
-            int strategicInit = (cbHoliday.Checked == true) ? 1 : 0;
+            int shareAcross = (cbShareAcross.Checked == true) ? hours : 0;
+            int holiday = (cbHoliday.Checked == true) ? 1 : 0;
             int CorporateEvents = (cbCorporateEvents.Checked == true) ? 1 : 0;
             //int Other = (cbOther.Checked == true) ? 1 : 0;
             int wageScale = (cbWageScale.Checked == true) ? 1 : 0;
             int TravelTime = (cbTravelTime.Checked == true) ? 1 : 0;
             int PTO = (cbPTO.Checked == true) ? 1 : 0;
-
-            //if (Other == 1)
-            //{
-            //    txtPreProjectNotes.Text = txtOther.Text;
-
-            //}
+            string hoursAndMinutes = string.Empty;
+            hoursAndMinutes = ddlHours.SelectedValue.ToString() + "." + ddlMinutes.SelectedValue.ToString();
 
             string projectName = string.Empty;
             projectName = txtProjectName.Text.Trim();
@@ -190,13 +208,14 @@ namespace TimeTrax
                     cmd.Parameters.AddWithValue("@ProjectName", projectName);
                     cmd.Parameters.AddWithValue("@DateWorked", txtDateWorked.Text);
                     cmd.Parameters.AddWithValue("@Employee", employeeName);
-                    cmd.Parameters.AddWithValue("@Hours", ddlHours.SelectedValue.ToString());
+                    cmd.Parameters.AddWithValue("@Hours", hoursAndMinutes);
                     cmd.Parameters.AddWithValue("@WageScale", wageScale);
                     cmd.Parameters.AddWithValue("@DriveTime", TravelTime);
                     cmd.Parameters.AddWithValue("@PreProject", preProject);
-                    cmd.Parameters.AddWithValue("@Holiday", strategicInit);
+                    cmd.Parameters.AddWithValue("@shareAcross", shareAcross);
+                    cmd.Parameters.AddWithValue("@holiday", holiday);
                     cmd.Parameters.AddWithValue("@CorporateEvents", CorporateEvents);
-                    cmd.Parameters.AddWithValue("@Other", string.Empty);
+                    // cmd.Parameters.AddWithValue("@Other", string.Empty);
                     cmd.Parameters.AddWithValue("@PTO", PTO);
                     cmd.Parameters.AddWithValue("@Notes", txtPreProjectNotes.Text);
                     cmd.Connection = conn;
@@ -206,6 +225,7 @@ namespace TimeTrax
 
                 }
                 ddlHours.SelectedValue = "0";
+                ddlMinutes.SelectedValue = "00";
                 txtProjectNumber.Text = string.Empty;
                 txtProjectName.Text = string.Empty;
                 txtPreProjectNotes.Text = string.Empty;
@@ -280,6 +300,7 @@ namespace TimeTrax
             cbPreProject.Checked = true;
             lblShortNote.Visible = true;
             txtPreProjectNotes.Visible = true;
+            txtProjectNumber.Text = string.Empty;
             //lblcharCountOutput.Visible = true;
             //cbPreProject.BackColor = System.Drawing.Color.LightGreen;
             RequiredFieldValidator1.Enabled = true;
@@ -291,7 +312,8 @@ namespace TimeTrax
         {
             SetCheckBoxesToFalse();
             cbProjectNumber.Checked = true;
-
+            RequiredFieldValidator1.Enabled = false;
+            RequiredFieldValidator2.Enabled = true;
         }
 
         protected void cbCorporateEvents_CheckedChanged(object sender, EventArgs e)
@@ -321,9 +343,12 @@ namespace TimeTrax
 
         protected void SetCheckBoxesToFalse()
         {
+            txtProjectName.ForeColor = System.Drawing.Color.White;
+            txtProjectName.Text = string.Empty;
             cbHoliday.Checked = false;
             cbProjectNumber.Checked = false;
             cbPreProject.Checked = false;
+            cbShareAcross.Checked = false;
             cbCorporateEvents.Checked = false;
             cbPTO.Checked = false;
             lblShortNote.Visible = false;
@@ -331,24 +356,18 @@ namespace TimeTrax
             RequiredFieldValidator1.Enabled = false;
             lblSubmitView2.Text = string.Empty;
 
-            //rbProjectNumber.Checked = false;
-            //rbProjectNumber.BackColor = System.Drawing.Color.White;
-            //cbHoliday.BackColor = System.Drawing.Color.White;
-            //cbPreProject.BackColor = System.Drawing.Color.White;
-            // cbOther.Checked = false;
-            //cbOther.BackColor = System.Drawing.Color.White;
-            //cbCorporateEvents.BackColor = System.Drawing.Color.White;
-            //lblcharCountOutput.Visible = false;
-            //RequiredFieldValidator3.Enabled = false;
-            //txtOther.Visible = false;
-            //lblOtherNote.Visible = false;
-
-
         }
 
         protected void ddlHours_SelectedIndexChanged(object sender, EventArgs e)
         {
             lblSubmitView2.Text = string.Empty;
+            if(cbShareAcross.Checked == true)
+            {
+                checkShareAcrossTimeForWeek();
+
+            }
+
+            txtHoursAndMinutes.Text = ddlHours.SelectedValue.ToString() + "." + ddlMinutes.SelectedValue.ToString();
         }
 
         protected void cbWageScale_CheckedChanged(object sender, EventArgs e)
@@ -424,6 +443,132 @@ namespace TimeTrax
             int charactersLeft = 0;
             charactersLeft = 50 - txtPreProjectNotes.Text.Length;
             //lblcharCountOutput.Text = charactersLeft.ToString() + " more characters allowed";
+        }
+
+        protected void ddlMinutes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtHoursAndMinutes.Text = ddlHours.SelectedValue.ToString() + "." + ddlMinutes.SelectedValue.ToString();
+        }
+        protected void IsTextboxValid(object sender, ServerValidateEventArgs e)
+        {
+            //e.IsValid = (cbProjectNumber.Checked == false);
+            if(cbProjectNumber.Checked == true)
+            {
+                if ( txtProjectNumber.Text == string.Empty)
+                {
+                    e.IsValid = false;
+                }
+            }
+
+        }
+
+        protected void cbShareAcross_CheckedChanged(object sender, EventArgs e)
+        {
+            SetCheckBoxesToFalse();
+            cbShareAcross.Checked = true;
+            lblShortNote.Visible = true;
+            txtPreProjectNotes.Visible = true;
+            txtProjectNumber.Text = string.Empty;
+            //lblcharCountOutput.Visible = true;
+            //cbPreProject.BackColor = System.Drawing.Color.LightGreen;
+            RequiredFieldValidator1.Enabled = true;
+            RequiredFieldValidator2.Enabled = false;
+            checkShareAcrossTimeForWeek();
+
+
+        }
+
+        protected void checkShareAcrossTimeForWeek()
+        {
+            // search timesheet for shareAcross entries for this week.  
+            // add up the time and subtract from 4
+            int ShareAcrossMaxHoursLeftToTakeThisWeek = 0;
+            int ShareAcrossMaxHoursAllowedBySystem = 0;
+            int shareAcrossHoursTaken = 0;
+            // put SQL here to check on hours used for shareAcross
+            // maxHoursAllowed = maxHoursAllowed - shareAcrossHoursUsedThisWeek
+            string employeeName = lblWelcome.Text.Replace("Submit time for: ", "");
+            string ShareAcrossProject = string.Empty;
+
+            string sqlCmdText = string.Empty;
+            DataSet ds = new DataSet();
+            sqlCmdText = "checkShareAcrossTimeForWeek";
+            SqlConnection conn = new SqlConnection(Convert.ToString(ConfigurationManager.ConnectionStrings["TimeTraxConnectionString"]));
+            using (conn)
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = sqlCmdText;
+                cmd.Parameters.AddWithValue("@dateSubmittedFor", txtDateWorked.Text);
+                cmd.Parameters.AddWithValue("@Employee", employeeName);
+                cmd.Connection = conn;
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(ds);
+                conn.Close();
+
+            }
+
+            DataTable dt = new DataTable();
+            if (ds.Tables.Count != 0)
+            {
+                dt = ds.Tables[0];
+            }
+
+            shareAcrossHoursTaken = Convert.ToInt16(ds.Tables[0].Rows[0]["shareAcrossHoursTaken"].ToString());
+            ShareAcrossMaxHoursAllowedBySystem = Convert.ToInt16(ds.Tables[0].Rows[0]["ShareAcrossMaxHoursAllowed"].ToString());
+            ShareAcrossProject = ds.Tables[0].Rows[0]["ShareAcrossProject"].ToString();
+
+            ShareAcrossMaxHoursLeftToTakeThisWeek = ShareAcrossMaxHoursAllowedBySystem - shareAcrossHoursTaken;
+
+            if (Convert.ToInt16(ddlHours.SelectedValue.ToString()) > ShareAcrossMaxHoursLeftToTakeThisWeek)
+            {
+                if(Convert.ToInt16(ShareAcrossMaxHoursLeftToTakeThisWeek.ToString()) < 1 )
+                    {
+                    ShareAcrossMaxHoursLeftToTakeThisWeek = 0;
+                }
+                ddlHours.SelectedValue = ShareAcrossMaxHoursLeftToTakeThisWeek.ToString();
+                txtProjectName.Text = "Hours adjusted to max remaining allowed.";
+                txtProjectName.ForeColor = System.Drawing.Color.Red;
+            }
+
+            if (ShareAcrossMaxHoursLeftToTakeThisWeek < 1)
+            {
+                txtProjectName.Text = "You have already assigned max Share Hours.";
+                txtProjectName.ForeColor = System.Drawing.Color.Red;
+            }
+
+        }
+        protected string CheckEmployeeRole(string employee, string roleName)
+        {
+            string IsEmployeeInRole = string.Empty;
+            string sqlCmdText = string.Empty;
+            DataSet ds = new DataSet();
+            sqlCmdText = "CheckEmployeeRole";
+            SqlConnection conn = new SqlConnection(Convert.ToString(ConfigurationManager.ConnectionStrings["TimeTraxConnectionString"]));
+            using (conn)
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = sqlCmdText;
+                cmd.Parameters.AddWithValue("@Employee", employee);
+                cmd.Parameters.AddWithValue("@RoleName", roleName);
+                cmd.Connection = conn;
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(ds);
+                conn.Close();
+
+            }
+
+            DataTable dt = new DataTable();
+            if (ds.Tables.Count != 0)
+            {
+                dt = ds.Tables[0];
+            }
+            
+            IsEmployeeInRole = ds.Tables[0].Rows[0]["IsEmployeeInRole"].ToString();
+            return (IsEmployeeInRole);
         }
     }
 }
