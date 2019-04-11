@@ -196,6 +196,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="EnterTime.aspx" />
     <Content Include="FAQ.aspx" />
+    <Content Include="FAQEdit.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -205,8 +206,14 @@
     <Content Include="Content\bootstrap-datepicker3.css.map" />
     <Content Include="Content\bootstrap-datepicker.standalone.css.map" />
     <Content Include="Content\bootstrap-datepicker.css.map" />
+    <Content Include="Images\FirstRecord.png" />
+    <Content Include="Images\LastRecord.png" />
     <Content Include="Images\leftArrow.png" />
     <Content Include="Images\RightArrow.png" />
+    <Content Include="Images\VideoBlue.png" />
+    <Content Include="Images\VideoGray.png" />
+    <Content Include="Images\VideoTan.png" />
+    <Content Include="Login.aspx" />
     <Content Include="Reports\MgrCostRpt.aspx" />
     <Content Include="Reports\ProjectTimeCost.aspx" />
     <Content Include="Reports\TimeSheetRpt.aspx" />
@@ -225,7 +232,6 @@
     <Content Include="WebForm1.aspx" />
     <None Include="Properties\PublishProfiles\TimeTraxWeb - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Home.aspx" />
     <Content Include="Images\CalendarButton.png" />
     <Content Include="Images\HoverButton.png" />
     <Content Include="Images\InitialIbackground.png" />
@@ -233,7 +239,6 @@
     <Content Include="Images\RadioButtonChecked.png" />
     <Content Include="Images\RadioButtonUnchecked.png" />
     <Content Include="Images\SelectedBackground.png" />
-    <Content Include="Login.aspx" />
     <Content Include="Logo.png" />
     <Content Include="ManagerApproval.aspx" />
     <Content Include="ReviewCurrentTime.aspx" />
@@ -516,15 +521,15 @@
     <Compile Include="FAQ.aspx.designer.cs">
       <DependentUpon>FAQ.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Home.aspx.cs">
-      <DependentUpon>Home.aspx</DependentUpon>
+    <Compile Include="FAQEdit.aspx.cs">
+      <DependentUpon>FAQEdit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Home.aspx.designer.cs">
-      <DependentUpon>Home.aspx</DependentUpon>
+    <Compile Include="FAQEdit.aspx.designer.cs">
+      <DependentUpon>FAQEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

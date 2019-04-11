@@ -1,13 +1,13 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="ManagerApproval.aspx.cs" Inherits="TimeTrax.ManagerApproval" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
+    <div style="align-content:center"><asp:Label ID="Label3" runat="server" Text="Manager Approval" Font-Bold="true" Font-Size="X-Large" Font-Names="Arial"></asp:Label></div>
        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             
             <asp:Table ID="Table1" runat="server">
             <asp:TableRow> <asp:TableCell Width="255px">
-                <asp:Label ID="Label1" runat="server" Text="Approve Time for:"></asp:Label><asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList><p></p>
+                <asp:Label ID="Label1" runat="server" Text="Approve Time for:" Font-Names="Arial"></asp:Label><asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList><p></p>
                 </asp:TableCell><asp:TableCell  Width="200px"> <asp:RadioButton ID="rbUnapprovedTime" runat="server" Text="Show Unapproved Time" Checked="true" GroupName="approvedType" OnCheckedChanged="rbUnapprovedTime_CheckedChanged" AutoPostBack="true" /> </asp:TableCell><asp:TableCell><asp:RadioButton ID="rbIncludeApprovedTime" runat="server" Text="Include Approved Time" GroupName="approvedType" OnCheckedChanged="rbIncludeApprovedTime_CheckedChanged" AutoPostBack="true" /></asp:TableCell></asp:TableRow>
                  </asp:Table>
             <asp:Table ID="Table2" runat="server">

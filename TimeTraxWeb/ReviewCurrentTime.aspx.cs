@@ -36,7 +36,7 @@ namespace TimeTrax
         }
         protected void GetTotalHours()
         {
-            
+            string employeeName = Session["EmployeeName"].ToString();
             DataSet ds = new DataSet();
             string sqlCmdText = string.Empty;
             string flavor = Session["flavor"].ToString();
@@ -48,7 +48,7 @@ namespace TimeTrax
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = sqlCmdText;
-                cmd.Parameters.AddWithValue("@Employee", lblWelcome.Text);
+                cmd.Parameters.AddWithValue("@Employee", employeeName);
                 cmd.Parameters.AddWithValue("@beginDate", txtDateBegin.Text);
                 cmd.Parameters.AddWithValue("@endDate", txtDateEnd.Text);
                 cmd.Parameters.AddWithValue("@flavor", flavor);  // Unapproved, Approved, All
@@ -58,40 +58,41 @@ namespace TimeTrax
                 conn.Close();
 
             }
-            //lblSumHours.Text = "Total shown: " + ds.Tables[0].Rows[0]["SumHours"].ToString();
             lblSumLastWeek.Text = " Previous Week:" +  ds.Tables[0].Rows[0]["SumLastWeek"].ToString();
             lblSumThisWeek.Text = " Shown Week:" + ds.Tables[0].Rows[0]["SumThisWeek"].ToString();
             lblSumNextWeek.Text = " Following Week:" + ds.Tables[0].Rows[0]["SumNextWeek"].ToString();
 
-            lblSumCurrentMonday.Text = " Mon: " + ds.Tables[0].Rows[0]["SumCurrentMonday"].ToString();
-            lblSumCurrentTuesday.Text = " Tues: " + ds.Tables[0].Rows[0]["SumCurrentTuesday"].ToString();
-            lblSumCurrentWednesday.Text = " Wed: " + ds.Tables[0].Rows[0]["SumCurrentWednesday"].ToString();
-            lblSumCurrentThursday.Text = " Thurs: " + ds.Tables[0].Rows[0]["SumCurrentThursday"].ToString();
-            lblSumCurrentFriday.Text = " Fri: " + ds.Tables[0].Rows[0]["SumCurrentFriday"].ToString();
-            lblSumCurrentSaturday.Text = " Sat: " + ds.Tables[0].Rows[0]["SumCurrentSaturday"].ToString();
-            lblSumCurrentSunday.Text = " Sun: " + ds.Tables[0].Rows[0]["SumCurrentSunday"].ToString();
+            lblSumCurrentMonday.Text = "Mon:" + ds.Tables[0].Rows[0]["SumCurrentMonday"].ToString();
+            lblSumCurrentTuesday.Text = "Tue:" + ds.Tables[0].Rows[0]["SumCurrentTuesday"].ToString();
+            lblSumCurrentWednesday.Text = "Wed:" + ds.Tables[0].Rows[0]["SumCurrentWednesday"].ToString();
+            lblSumCurrentThursday.Text = "Thu:" + ds.Tables[0].Rows[0]["SumCurrentThursday"].ToString().Trim();
+            lblSumCurrentFriday.Text = "Fri:" + ds.Tables[0].Rows[0]["SumCurrentFriday"].ToString();
+            lblSumCurrentSaturday.Text = "Sat:" + ds.Tables[0].Rows[0]["SumCurrentSaturday"].ToString();
+            lblSumCurrentSunday.Text = "Sun:" + ds.Tables[0].Rows[0]["SumCurrentSunday"].ToString();
         }
 
         protected void GetEmployeeName()
         {
-            DataSet ds = new DataSet();
-            string sqlCmdText = string.Empty;
-            sqlCmdText = "select EmployeeName from users where EmailAddress = '" + lblWelcome.Text + "'";
-            SqlConnection conn = new SqlConnection(Convert.ToString(ConfigurationManager.ConnectionStrings["TimeTraxConnectionString"]));
-            using (conn)
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = sqlCmdText;
-                cmd.Connection = conn;
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                adapter.Fill(ds);
-                conn.Close();
 
-            }
-            if (ds.Tables[0].Rows.Count > 0 && ds.Tables[0].Rows[0]["EmployeeName"] != null)
-                lblWelcome.Text = ds.Tables[0].Rows[0]["EmployeeName"].ToString();
+            //DataSet ds = new DataSet();
+            //string sqlCmdText = string.Empty;
+            //sqlCmdText = "select EmployeeName from users where EmailAddress = '" + lblWelcome.Text + "'";
+            //SqlConnection conn = new SqlConnection(Convert.ToString(ConfigurationManager.ConnectionStrings["TimeTraxConnectionString"]));
+            //using (conn)
+            //{
+            //    conn.Open();
+            //    SqlCommand cmd = new SqlCommand();
+            //    cmd.CommandType = CommandType.Text;
+            //    cmd.CommandText = sqlCmdText;
+            //    cmd.Connection = conn;
+            //    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            //    adapter.Fill(ds);
+            //    conn.Close();
+
+            //}
+            //if (ds.Tables[0].Rows.Count > 0 && ds.Tables[0].Rows[0]["EmployeeName"] != null)
+            //    lblWelcome.Text = ds.Tables[0].Rows[0]["EmployeeName"].ToString();
+            lblWelcome.Text = Session["EmployeeName"].ToString();
         }
 
         protected void btnLastWeek_Click(object sender, EventArgs e)

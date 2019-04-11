@@ -26,7 +26,7 @@ namespace TimeTrax
 
             string sqlCmdText = string.Empty;
             DataSet ds = new DataSet();
-            sqlCmdText = "GetFAQData";
+            sqlCmdText = "GetFAQDataAndLink";
             SqlConnection conn = new SqlConnection(Convert.ToString(ConfigurationManager.ConnectionStrings["TimeTraxConnectionString"]));
             using (conn)
             {

@@ -16,6 +16,16 @@ namespace TimeTrax.Reports
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UserLevel"].ToString() == "Finance")
+            {
+                divAuthorized.Visible = true;
+                divNotAuthorized.Visible = false;
+            }
+            else
+            {
+                divAuthorized.Visible = false;
+                divNotAuthorized.Visible = true;
+            }
 
         }
         protected void createWorkbook()
@@ -23,6 +33,7 @@ namespace TimeTrax.Reports
     
             int endingRow = 0;
             int calcRow = 0;
+            LabelProgress.ForeColor = System.Drawing.Color.Black;
             LabelProgress.Text = "Gathering the data...";
             LabelProgress.Visible = true;
             DataSet ds = new DataSet();
@@ -41,9 +52,19 @@ namespace TimeTrax.Reports
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(ds);
                 conn.Close();
-                LabelProgress.Text = "Exporting the file...";
             }
 
+            if (ds.Tables[0].Rows.Count < 4)
+            {
+                LabelProgress.ForeColor = System.Drawing.Color.Red;
+                LabelProgress.Text = "No data found for: " + txtProjectNumber.Text;
+                return;
+            }
+            else
+            {
+                LabelProgress.ForeColor = System.Drawing.Color.Black;
+                LabelProgress.Text = "Exporting the file...";
+            }
 
             // *************************************************************
             //Creates a blank workbook. Use the using statment, so the package is disposed when we are done.
@@ -203,6 +224,8 @@ namespace TimeTrax.Reports
 
         protected void btnRunRpt_Click(object sender, EventArgs e)
         {
+            LabelProgress.ForeColor = System.Drawing.Color.Black;
+            LabelProgress.Text = string.Empty;
             GetProjectName();
             createWorkbook();
         }
@@ -210,6 +233,8 @@ namespace TimeTrax.Reports
         protected void btnGetProjectName_Click(object sender, EventArgs e)
         {
             int ProjectID;
+            LabelProgress.ForeColor = System.Drawing.Color.Black;
+            LabelProgress.Text = string.Empty;
             if (int.TryParse(txtProjectNumber.Text, out ProjectID))
             {
                 txtProjectName.Text = GetProjectName(txtProjectNumber.Text);

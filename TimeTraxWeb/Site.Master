@@ -60,10 +60,15 @@
                     <%--<a class="dropdown-item" runat="server" href="~/Reports/ExcelCostRpt1.aspx">Cost Reports</a>--%>
                     <a class="dropdown-item" runat="server" href="~/Reports/MgrCostRpt.aspx">Manager Cost Report</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="Reports/ProjectTimeCost.aspx">Project Cost Report</a>
+                    <a class="dropdown-item" runat="server" href="~/Reports/ProjectTimeCost.aspx">Project Cost Report</a>
                     </div></li>
-                        <li><a runat="server" href="~/ManagerApproval">Mgr Approval</a></li>
-                         <li><a runat="server" href="~/Users">Admin</a></li>
+                    <li><a runat="server" href="~/ManagerApproval">Mgr Approval</a></li>
+                         <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
+                           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                           <a class="dropdown-item" runat="server" href="~/Users.aspx">User Management</a><BR> 
+                           <a class="dropdown-item" runat="server" href="~/FAQEdit.aspx">FAQ Management</a>
+                    </div></li>
                        
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">

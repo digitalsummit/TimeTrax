@@ -4,10 +4,11 @@
         <asp:Label ID="Label3" runat="server" Text="Sorry, your user role does not allow for running this report."></asp:Label>
 
     </div>
-    <div id="divAuthorized" runat="server" visible="false">
+    <div id="divAuthorized" runat="server" visible="false" style="float:left">
+         <asp:Label ID="Label4" runat="server" Text="Manager Project Cost Report" Font-Bold="true" Font-Size="X-Large"></asp:Label><br />
     <div class="form-group">
-                 <asp:Table ID="Table1" runat="server">
-                      <asp:TableRow><asp:TableCell Width="5px"></asp:TableCell><asp:TableCell ColumnSpan="3"><asp:Label ID="Label1" CssClass="control-label col-sm-2" runat="server" Text="Manager Project Cost Report (Excel)" Width="160"></asp:Label></asp:TableCell></asp:TableRow>
+                 <asp:Table ID="Table1" runat="server" BorderStyle="None">
+                      <asp:TableRow><asp:TableCell Width="5px"></asp:TableCell><asp:TableCell ColumnSpan="3"><asp:Label ID="Label1" CssClass="control-label col-sm-2" runat="server" Text="" Width="160"></asp:Label></asp:TableCell></asp:TableRow>
                       <asp:TableRow VerticalAlign="Middle" HorizontalAlign="Center"><asp:TableCell></asp:TableCell>
                   <asp:TableCell><asp:ImageButton ID="btnPreviousWeek" ImageUrl="~/Images/leftArrow.png" runat="server" Height="30px" Width="30px" OnClick="btnPreviousWeek_Click" /></asp:TableCell>
                           <asp:TableCell><asp:Label ID="Label7" runat="server" Text="Select Week"></asp:Label></asp:TableCell>
@@ -21,11 +22,11 @@
                 <asp:TextBox ID="txtDateEnd" runat="server" CssClass="form-control"></asp:TextBox>
             </div></div>
 
-    <div class="form-group">
-             <div class="col-sm-10">
+    <div class="form-group" style="float:left">
+             
                  <asp:Label ID="lblWarningSelectManager" runat="server" Text="Please Select a Manager from the drop down list." ForeColor="Red" Visible="false"></asp:Label>
             <asp:DropDownList ID="DropDownList1" CssClass="form-control" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-        </div>
+        
         </div>
         <asp:GridView ID="GridView1" runat="server"></asp:GridView>
 

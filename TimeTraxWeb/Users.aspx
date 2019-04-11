@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="Users.aspx.cs" Inherits="TimeTrax.Users" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <div style="align-content:center"><asp:Label ID="Label7" runat="server" Text="User Management" Font-Bold="true" Font-Size="X-Large" Font-Names="Arial"></asp:Label></div>
        <div id="divNotAuthorized" runat="server" visible="false">
         <asp:Label ID="Label3" runat="server" Text="Sorry, your user role does not allow access to this option."></asp:Label>
 

@@ -5,15 +5,43 @@
  */
 .rightAlign td {
         text-align: right;
+        font-family:Arial;
     }
 .leftAlign td {
         text-align: left;
-
+        font-family:Arial;
     }
 .checkboxPad input[type="checkbox"] 
 { 
     margin-right: 6px; 
+    font-family:Arial;
 }
+.textBoxNormal {
+ font-family:Arial;
+}
+.labelNormal {
+ cursor: pointer;
+    color: #555;
+    display: block;
+    padding: 10px;
+    margin: 3px;
+ font-family:Arial;
+}
+.inline-rb input[type="radio"] {
+    width:100px;
+}
+
+.inline-rb label {
+    text-align:justify;
+    background-color:yellow;
+}
+ .radioButtonList { list-style:none; margin: 20px; padding-left:30px; padding-right:30px}
+    .radioButtonList.horizontal li { display: inline;}
+
+    .radioButtonList label {
+        display: inline;
+    }
+
 .midAlign td {
     text-align:center;
 }

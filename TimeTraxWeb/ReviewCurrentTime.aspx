@@ -2,43 +2,48 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-        <asp:Label Visible="false" ID="lblWelcome" runat="server" Text="Label"></asp:Label>
+        <asp:Label Visible="false" ID="lblWelcome" runat="server" Text="Label" Font-Names="Arial"></asp:Label>
 
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
+            <div style="align-content:center"><asp:Label ID="Label3" runat="server" Text="Review My Time" Font-Bold="true" Font-Size="X-Large" Font-Names="Arial"></asp:Label></div>
             <asp:Table ID="Table1" runat="server">
-                <asp:TableHeaderRow BorderColor="Cyan" BorderStyle="Solid" BorderWidth="5px" BackColor="Cyan"><asp:TableHeaderCell Width="120px"><asp:Label ID="lblSumHours" runat="server" Text="" BackColor="LightCyan" ></asp:Label></asp:TableHeaderCell><asp:TableHeaderCell Width="108px"><asp:Label ID="lblSumLastWeek" runat="server" Text="" BackColor="LightCyan"></asp:Label></asp:TableHeaderCell><asp:TableHeaderCell Width="108px"><asp:Label ID="lblSumThisWeek" runat="server" Text="" BackColor="LightCyan"></asp:Label></asp:TableHeaderCell><asp:TableHeaderCell Width="108px"><asp:Label ID="lblSumNextWeek" runat="server" Text="" BackColor="LightCyan"></asp:Label></asp:TableHeaderCell></asp:TableHeaderRow>
+                <asp:TableHeaderRow BorderColor="LightCyan" BorderStyle="Solid" BorderWidth="5px" BackColor="LightCyan"><asp:TableHeaderCell Width="108px"><asp:Label ID="lblSumLastWeek" runat="server" Text="" BackColor="LightCyan"></asp:Label></asp:TableHeaderCell><asp:TableHeaderCell Width="108px"><asp:Label ID="lblSumThisWeek" runat="server" Text="" BackColor="LightCyan" Width="70px"></asp:Label></asp:TableHeaderCell><asp:TableHeaderCell Width="108px"><asp:Label ID="lblSumNextWeek" runat="server" Text="" BackColor="LightCyan"></asp:Label></asp:TableHeaderCell></asp:TableHeaderRow>
                 </asp:Table>
-            <asp:Table runat="server">
-                        <asp:TableRow><asp:TableCell Width="15px"></asp:TableCell><asp:TableCell ColumnSpan="3"><asp:Label ID="Label6" CssClass="control-label" runat="server" Text="Review My Time"></asp:Label></asp:TableCell></asp:TableRow>
-                      <asp:TableRow VerticalAlign="Middle" HorizontalAlign="Center"><asp:TableCell></asp:TableCell>
+            <asp:Table ID="Table2" runat="server">
+                        <asp:TableRow><asp:TableCell><asp:Label ID="Label7" runat="server" Text="Select Week" CssClass="labelNormal" Font-Names="Arial"></asp:Label></asp:TableCell><asp:TableCell></asp:TableCell></asp:TableRow>
+                      <asp:TableRow VerticalAlign="Middle" HorizontalAlign="Center">
                   <asp:TableCell><asp:ImageButton ID="btnPreviousWeek" ImageUrl="~/Images/leftArrow.png" runat="server" Height="30px" Width="30px" OnClick="btnPreviousWeek_Click" /></asp:TableCell>
-                          <asp:TableCell><asp:Label ID="Label7" runat="server" Text="Select Week"></asp:Label></asp:TableCell>
+                          <asp:TableCell></asp:TableCell>
                           <asp:TableCell><asp:ImageButton ID="btnNextWeek" ImageUrl="~/Images/RightArrow.png" runat="server" Height="30px" Width="30px" OnClick="btnNextWeek_Click" /></asp:TableCell>
-                          <asp:TableCell>
-                              <asp:Label ID="Label2" runat="server" Text="Show for:">
-                                  <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Vertical" Width="100px" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" AutoPostBack="true"><asp:ListItem Text="Unapproved" Value="Unapproved"></asp:ListItem> <asp:ListItem Text="Approved"></asp:ListItem> <asp:ListItem Text="All"></asp:ListItem></asp:RadioButtonList></asp:Label></asp:TableCell>
-                      </asp:TableRow>
+                          <asp:TableCell Width="50px"></asp:TableCell>
+                          <asp:TableCell></asp:TableCell>
+                      </asp:TableRow> 
+                <asp:TableRow><asp:TableCell>Prev</asp:TableCell><asp:TableCell></asp:TableCell><asp:TableCell>Next</asp:TableCell><asp:TableCell></asp:TableCell></asp:TableRow>
+            </asp:Table><asp:Table runat="server">
                 <asp:TableRow BorderColor="Cyan" BorderStyle="Solid" BorderWidth ="3px" BackColor="Cyan">
-                    <asp:TableCell Width="70px"><asp:Label ID="lblSumCurrentMonday" runat="server" Text="" BackColor="LightCyan"></asp:Label>&nbsp;</asp:TableCell>
-                    <asp:TableCell Width="70px"><asp:Label ID="lblSumCurrentTuesday" runat="server" Text="" BackColor="LightCyan"></asp:Label>&nbsp;</asp:TableCell>
-                    <asp:TableCell Width="70px"><asp:Label ID="lblSumCurrentWednesday" runat="server" Text="" BackColor="LightCyan"></asp:Label>&nbsp;</asp:TableCell>
-                    <asp:TableCell Width="70px"><asp:Label ID="lblSumCurrentThursday" runat="server" Text="" BackColor="LightCyan" ></asp:Label>&nbsp;</asp:TableCell>
-                    <asp:TableCell Width="70px"><asp:Label ID="lblSumCurrentFriday" runat="server" Text="" BackColor="LightCyan"></asp:Label>&nbsp;</asp:TableCell>
-                    <asp:TableCell Width="70px"><asp:Label ID="lblSumCurrentSaturday" runat="server" Text="" BackColor="LightCyan"></asp:Label>&nbsp;</asp:TableCell>
-                    <asp:TableCell Width="70px"><asp:Label ID="lblSumCurrentSunday" runat="server" Text="" BackColor="LightCyan"></asp:Label>&nbsp;</asp:TableCell>
+                    <asp:TableCell Width="45px"><asp:Label ID="lblSumCurrentMonday" runat="server" Text="" BackColor="LightCyan" Font-Names="Arial"></asp:Label>&nbsp;</asp:TableCell>
+                    <asp:TableCell Width="45px"><asp:Label ID="lblSumCurrentTuesday" runat="server" Text="" BackColor="LightCyan" Font-Names="Arial"></asp:Label>&nbsp;</asp:TableCell>
+                    <asp:TableCell Width="45px"><asp:Label ID="lblSumCurrentWednesday" runat="server" Text="" BackColor="LightCyan" Font-Names="Arial"></asp:Label>&nbsp;</asp:TableCell>
+                    <asp:TableCell Width="45px"><asp:Label ID="lblSumCurrentThursday" runat="server" Text="" BackColor="LightCyan" Font-Names="Arial"></asp:Label>&nbsp;</asp:TableCell>
+                    <asp:TableCell Width="45px"><asp:Label ID="lblSumCurrentFriday" runat="server" Text="" BackColor="LightCyan" Font-Names="Arial"></asp:Label>&nbsp;</asp:TableCell>
+                    <asp:TableCell Width="45px"><asp:Label ID="lblSumCurrentSaturday" runat="server" Text="" BackColor="LightCyan" Font-Names="Arial"></asp:Label>&nbsp;</asp:TableCell>
+                    <asp:TableCell Width="45px"><asp:Label ID="lblSumCurrentSunday" runat="server" Text="" BackColor="LightCyan" Font-Names="Arial"></asp:Label>&nbsp;</asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
-               <asp:Label for="txtDateBegin" CssClass="control-label col-sm-2" runat="server" Text="Beginning Date:"></asp:Label>
-                <asp:TextBox ID="txtDateBegin" runat="server" CssClass="form-control"></asp:TextBox>
-                  
-            <asp:Label for="txtDateEnd" CssClass="control-label col-sm-2" runat="server" Text="Ending Date:"></asp:Label>
-                <asp:TextBox ID="txtDateEnd" runat="server" CssClass="form-control"></asp:TextBox>
+            <div runat="server" style="width:50%">
+                <asp:Table ID="Table3" runat="server"><asp:TableRow>
+                      <asp:TableCell><asp:Label for="txtDateBegin" CssClass="control-label col-sm-2" runat="server" Text="Beginning Date:" Width="150px" Font-Names="Arial"></asp:Label></asp:TableCell><asp:TableCell><asp:TextBox ID="txtDateBegin" runat="server" CssClass="form-control" Width="110px" Font-Names="Arial"></asp:TextBox></asp:TableCell>
+                  <asp:TableCell><asp:Label for="txtDateEnd" CssClass="control-label col-sm-2" runat="server" Text="Ending Date:" Width="130px" Font-Names="Arial"></asp:Label></asp:TableCell><asp:TableCell><asp:TextBox ID="txtDateEnd" runat="server" CssClass="form-control" Width="110px" Font-Names="Arial"></asp:TextBox></asp:TableCell>
+                  </asp:TableRow></asp:Table>
+                </div>
+            <asp:Label ID="Label2" runat="server" Text="Details:" Font-Names="Arial">
+                                  </asp:Label>
             <div runat="server" style="width:100%">
-            <asp:Label ID="Label1" runat="server" Text="Decrease Hours:&#x2207; &nbsp;&nbsp;&nbsp; Increase Hours: &#x2206; Change Date: &#x2207; or  &#x2206;" BackColor="White" ForeColor="#428BCA" Font-Bold="true" Font-Size="Large" ></asp:Label>
-            </div>
-
-        <asp:GridView ID="GridView1" runat="server" AllowPaging="False" AllowSorting="True" AutoGenerateColumns="False" AutoGenerateSelectButton="false" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" DataKeyNames="ID" OnSorting="GridView1_Sorting"  >
+            <asp:RadioButtonList ID="RadioButtonList1" RepeatColumns="3" runat="server" RepeatDirection="Horizontal" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" AutoPostBack="true"><asp:ListItem Text="Unapproved" Value="Unapproved" style="margin-right:20px" ></asp:ListItem> <asp:ListItem Text="Approved" style="margin-right:20px"></asp:ListItem> <asp:ListItem Text="All" style="margin-right:20px; padding-left:5px"></asp:ListItem></asp:RadioButtonList><br />
+                <asp:Label ID="Label1" runat="server" Text="Hours:Decrease &#x2207; &nbsp;Increase &#x2206; Change Date: &#x2207; or  &#x2206;" BackColor="White" ForeColor="#428BCA" Font-Bold="true" Font-Size="Small" Font-Names="Arial" ></asp:Label>
+                </div>
+        <asp:GridView ID="GridView1" runat="server" Font-Names="Arial" Width="95%" AllowPaging="False" AllowSorting="True" AutoGenerateColumns="False" AutoGenerateSelectButton="false" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" DataKeyNames="ID" OnSorting="GridView1_Sorting"  >
             <AlternatingRowStyle BackColor="PaleGoldenrod" />
             <Columns>
                 <asp:BoundField DataField="ID" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="ID" Visible="false" />

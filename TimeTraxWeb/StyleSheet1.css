@@ -31,6 +31,10 @@ border-radius: 10px;
     height:100%;
     vertical-align:central;
 }
+   .tableFAQ{
+       padding:20px;
+       border-spacing:20px;
+   }
 
 /*
 * BUTTONS

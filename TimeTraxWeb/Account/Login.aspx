@@ -16,7 +16,6 @@
                         </p>
                     </asp:PlaceHolder>
                     <div class="form-group">
-                        <asp:Label ID="Label1" runat="server" Text="If you have reached this page unexpectedly, your session may have timed out." ForeColor="Blue" Font-Bold="true"></asp:Label>
                         <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-2 control-label">Email</asp:Label>
                         <div class="col-md-10">
                             <asp:TextBox runat="server" ID="Email" CssClass="form-control" TextMode="Email" />
